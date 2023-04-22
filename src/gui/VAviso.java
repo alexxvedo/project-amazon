@@ -1,13 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
-/**
- *
- * @author alumno
- */
 public class VAviso extends javax.swing.JDialog {
 
     /**
@@ -19,11 +11,11 @@ public class VAviso extends javax.swing.JDialog {
         textoExcepcion.setText(txtExcepcion);
         this.addWindowListener(new java.awt.event.WindowAdapter() {
 
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                System.exit(0);
+            }
+        });
     }
 
     /**
@@ -81,7 +73,7 @@ public class VAviso extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-   
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrar;
     private javax.swing.JScrollPane jScrollPane1;

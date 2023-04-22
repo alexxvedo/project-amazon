@@ -21,7 +21,7 @@ public class DAOCliente extends AbstractDAO {
 
         try {
 
-            stmCliente = con.prepareStatement("select * from usuarios where email = ? and contrasena = ?");
+            stmCliente = con.prepareStatement("select * from clientes where email = ? and contrasena = ?");
             stmCliente.setString(1, email);
             stmCliente.setString(2, password);
             rsCliente = stmCliente.executeQuery();
