@@ -5,14 +5,11 @@
         <group>
             <file>file:/Users/ppabli/Desktop/project-amazon/src/gui/VAutentificacion.java</file>
             <file>file:/Users/ppabli/Desktop/project-amazon/src/baseDatos/FachadaBaseDatos.java</file>
-            <file>file:/Users/ppabli/Desktop/project-amazon/src/gui/FachadaGui.java</file>
             <file>file:/Users/ppabli/Desktop/project-amazon/src/gui/ModeloListaStrings.java</file>
+            <file>file:/Users/ppabli/Desktop/project-amazon/src/gui/VAviso.java</file>
             <file>file:/Users/ppabli/Desktop/project-amazon/src/aplicacion/Cliente.java</file>
-            <file>file:/Users/ppabli/Desktop/project-amazon/src/gui/ModeloTablaLibros.java</file>
             <file>file:/Users/ppabli/Desktop/project-amazon/src/baseDatos/DAOCliente.java</file>
             <file>file:/Users/ppabli/Desktop/project-amazon/src/aplicacion/GestionUsuarios.java</file>
-            <file>file:/Users/ppabli/Desktop/project-amazon/src/gui/VPrincipal.java</file>
-            <file>file:/Users/ppabli/Desktop/project-amazon/src/gui/ModeloTablaEjemplares.java</file>
         </group>
     </open-files>
 </project-private>

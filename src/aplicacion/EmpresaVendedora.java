@@ -26,4 +26,9 @@ public class EmpresaVendedora {
         return fechaAsociacion;
     }
 
+    @Override
+    public String toString() {
+        return "EmpresaVendedora{" + "id=" + id + ", nombre=" + nombre + '}';
+    }
+
 }

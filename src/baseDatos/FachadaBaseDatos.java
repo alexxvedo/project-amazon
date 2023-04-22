@@ -1,9 +1,11 @@
 package baseDatos;
 
 import aplicacion.Cliente;
+import aplicacion.Producto;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 public class FachadaBaseDatos {
@@ -11,6 +13,7 @@ public class FachadaBaseDatos {
     private aplicacion.FachadaAplicacion fa;
     private java.sql.Connection conexion;
     private DAOCliente daoUsuarios;
+    private DAOProducto daoProductos;
 
     public FachadaBaseDatos(aplicacion.FachadaAplicacion fa) {
 
@@ -33,28 +36,33 @@ public class FachadaBaseDatos {
             this.conexion = java.sql.DriverManager.getConnection("jdbc:" + gestor + "://" + configuracion.getProperty("servidor") + ":" + configuracion.getProperty("puerto") + "/" + configuracion.getProperty("baseDatos"), usuario);
 
             daoUsuarios = new DAOCliente(conexion, fa);
+            daoProductos = new DAOProducto(conexion, fa);
 
         } catch (FileNotFoundException f) {
 
             System.out.println(f.getMessage());
             fa.muestraExcepcion(f.getMessage());
-            
+
         } catch (IOException i) {
-            
+
             System.out.println(i.getMessage());
             fa.muestraExcepcion(i.getMessage());
-            
+
         } catch (java.sql.SQLException e) {
-            
+
             System.out.println(e.getMessage());
             fa.muestraExcepcion(e.getMessage());
-            
+
         }
 
     }
 
     public Cliente validarUsuario(String email, String password) {
         return daoUsuarios.validarUsuario(email, password);
+    }
+
+    public ArrayList<Producto> obtenerProductos(String nombre) {
+        return daoProductos.obtenerProducts(nombre);
     }
 
 }
