@@ -129,7 +129,7 @@ public class ModeloTablaProductos extends AbstractTableModel {
         fireTableDataChanged();
     }
 
-    public Producto obtenerLibro(int i) {
+    public Producto obtenerProducto(int i) {
         return this.productos.get(i);
     }
 

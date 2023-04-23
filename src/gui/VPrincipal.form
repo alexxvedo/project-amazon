@@ -83,9 +83,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="searchText">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Nombre producto"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="searchBtn">
       <Properties>
@@ -112,6 +109,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Ver perfil"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>

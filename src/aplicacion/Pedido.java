@@ -68,4 +68,9 @@ public class Pedido {
         return distribuidor;
     }
 
+    @Override
+    public String toString() {
+        return "Pedido{" + "id=" + id + '}';
+    }
+
 }

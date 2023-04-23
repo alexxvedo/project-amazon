@@ -1,6 +1,7 @@
 package baseDatos;
 
 import aplicacion.Cliente;
+import java.awt.Color;
 import java.sql.*;
 
 public class DAOCliente extends AbstractDAO {
@@ -35,7 +36,7 @@ public class DAOCliente extends AbstractDAO {
         } catch (SQLException e) {
 
             System.out.println(e.getMessage());
-            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage(), Color.RED);
 
         } finally {
 
@@ -52,6 +53,90 @@ public class DAOCliente extends AbstractDAO {
         }
 
         return resultado;
+
+    }
+
+    public int actualizarCliente(Cliente c) {
+
+        int res = 0;
+        Connection con;
+        PreparedStatement stmCliente = null;
+
+        con = super.getConexion();
+
+        try {
+
+            stmCliente = con.prepareStatement("update clientes set nombre = ?, telefono = ?, fechanacimiento = ?, email = ?, contrasena = ? where id = ?");
+            stmCliente.setString(1, c.getNombre());
+            stmCliente.setInt(2, c.getTelefono());
+            stmCliente.setDate(3, java.sql.Date.valueOf(c.getFechaNacimientoString()));
+            stmCliente.setString(4, c.getEmail());
+            stmCliente.setString(5, c.getContrasena());
+            stmCliente.setInt(6, c.getId());
+            stmCliente.executeUpdate();
+
+            res = 1;
+
+        } catch (Exception e) {
+
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage(), Color.RED);
+            res = 0;
+
+        } finally {
+
+            try {
+
+                stmCliente.close();
+
+            } catch (SQLException e) {
+
+                System.out.println("Imposible cerrar cursores");
+
+            }
+        }
+
+        return res;
+
+    }
+
+    public int eliminarCliente(Cliente c) {
+
+        int res = 0;
+        Connection con;
+        PreparedStatement stmCliente = null;
+
+        con = super.getConexion();
+
+        try {
+
+            stmCliente = con.prepareStatement("delete from clientes where id = ?");
+            stmCliente.setInt(1, c.getId());
+            stmCliente.executeUpdate();
+
+            res = 1;
+
+        } catch (SQLException e) {
+
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage(), Color.RED);
+            res = 0;
+
+        } finally {
+
+            try {
+
+                stmCliente.close();
+
+            } catch (SQLException e) {
+
+                System.out.println("Imposible cerrar cursores");
+
+            }
+
+        }
+
+        return res;
 
     }
 

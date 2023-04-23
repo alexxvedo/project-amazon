@@ -37,8 +37,6 @@ public class VPrincipal extends javax.swing.JFrame {
 
         searchLabel.setText("Buscador");
 
-        searchText.setText("Nombre producto");
-
         searchBtn.setText("Buscar");
         searchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,6 +54,11 @@ public class VPrincipal extends javax.swing.JFrame {
         jButton1.setText("Ver cesta");
 
         jButton2.setText("Ver perfil");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         tablaProductos.setModel(new ModeloTablaProductos());
         tablaProductos.getTableHeader().setReorderingAllowed(false);
@@ -124,6 +127,10 @@ public class VPrincipal extends javax.swing.JFrame {
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitBtnActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        fa.verPerfil();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton exitBtn;

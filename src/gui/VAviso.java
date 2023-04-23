@@ -1,13 +1,16 @@
 package gui;
 
+import java.awt.Color;
+
 public class VAviso extends javax.swing.JDialog {
 
     /**
      * Creates new form VAviso
      */
-    public VAviso(java.awt.Frame parent, boolean modal, String txtExcepcion) {
+    public VAviso(java.awt.Frame parent, boolean modal, String txtExcepcion, Color color) {
         super(parent, modal);
         initComponents();
+        textoExcepcion.setBackground(color);
         textoExcepcion.setText(txtExcepcion);
         this.addWindowListener(new java.awt.event.WindowAdapter() {
 
@@ -41,7 +44,7 @@ public class VAviso extends javax.swing.JDialog {
         });
 
         textoExcepcion.setColumns(20);
-        textoExcepcion.setForeground(new java.awt.Color(244, 44, 44));
+        textoExcepcion.setForeground(new java.awt.Color(51, 51, 51));
         textoExcepcion.setRows(5);
         jScrollPane1.setViewportView(textoExcepcion);
 

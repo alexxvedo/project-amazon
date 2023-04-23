@@ -1,5 +1,6 @@
 package aplicacion;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Cliente {
@@ -11,6 +12,8 @@ public class Cliente {
     private boolean prime;
     private String email;
     private String contrasena;
+
+    public static String format = "yyyy-MM-dd";
 
     public Cliente(int id, String nombre, int telefono, Date fechaNacimiento, boolean prime, String email, String contrasena) {
         this.id = id;
@@ -34,8 +37,16 @@ public class Cliente {
         return telefono;
     }
 
+    public String getTelefonoString() {
+        return "" + this.telefono;
+    }
+
     public Date getFechaNacimiento() {
         return fechaNacimiento;
+    }
+
+    public String getFechaNacimientoString() {
+        return new SimpleDateFormat(this.format).format(this.fechaNacimiento);
     }
 
     public boolean isPrime() {
@@ -49,5 +60,10 @@ public class Cliente {
     public String getContrasena() {
         return contrasena;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "id=" + id + '}';
+    }
+
 }

@@ -47,5 +47,10 @@ public class Producto {
     public int getExistencias() {
         return existencias;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Producto{" + "id=" + id + '}';
+    }
+
 }

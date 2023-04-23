@@ -3,6 +3,7 @@ package baseDatos;
 import aplicacion.Almacen;
 import aplicacion.EmpresaVendedora;
 import aplicacion.Producto;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -40,7 +41,6 @@ public class DAOProducto extends AbstractDAO {
                 EmpresaVendedora empresa = null;
 
                 if (rsEmpresa.next()) {
-                    System.out.println(rsEmpresa.getStatement());
                     empresa = new EmpresaVendedora(rsEmpresa.getInt("id"), rsEmpresa.getString("nombre"), rsEmpresa.getDate("fechaasociacion"));
                 }
 
@@ -62,7 +62,7 @@ public class DAOProducto extends AbstractDAO {
         } catch (SQLException e) {
 
             System.out.println(e.getMessage());
-            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage(), Color.RED);
 
         } finally {
 

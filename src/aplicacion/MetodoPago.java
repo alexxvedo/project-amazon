@@ -2,19 +2,19 @@ package aplicacion;
 
 public class MetodoPago {
 
-    private int numeroTarjeta;
+    private long numeroTarjeta;
     private Cliente cliente;
     private boolean activa;
     private boolean preferida;
 
-    public MetodoPago(int numeroTarjeta, Cliente cliente, boolean activa, boolean preferida) {
+    public MetodoPago(long numeroTarjeta, Cliente cliente, boolean activa, boolean preferida) {
         this.numeroTarjeta = numeroTarjeta;
         this.cliente = cliente;
         this.activa = activa;
         this.preferida = preferida;
     }
 
-    public int getNumeroTarjeta() {
+    public long getNumeroTarjeta() {
         return numeroTarjeta;
     }
 
@@ -29,5 +29,10 @@ public class MetodoPago {
     public boolean isPreferida() {
         return preferida;
     }
-    
+
+    @Override
+    public String toString() {
+        return "MetodoPago{" + "numeroTarjeta=" + numeroTarjeta + '}';
+    }
+
 }

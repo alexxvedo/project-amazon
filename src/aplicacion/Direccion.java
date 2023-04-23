@@ -41,5 +41,10 @@ public class Direccion {
     public boolean isPreferida() {
         return preferida;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Direccion{" + "id=" + id + '}';
+    }
+
 }

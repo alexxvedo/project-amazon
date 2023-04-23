@@ -1,5 +1,8 @@
 package gui;
 
+import aplicacion.Cliente;
+import java.awt.Color;
+
 public class FachadaGui {
 
     aplicacion.FachadaAplicacion fa;
@@ -16,13 +19,21 @@ public class FachadaGui {
         va  = new VAutentificacion(vp, true, fa);
         vp.setVisible(true);
         va.setVisible(true);
+
     }
 
-    public void muestraExcepcion(String txtExcepcion) {
-        VAviso va;
+    public void verPerfil(Cliente cliente) {
 
-        va  = new VAviso(vp, true, txtExcepcion);
+        VCliente vc = new VCliente(vp, true, fa, cliente);
+        vc.setVisible(true);
+
+    }
+
+    public void muestraExcepcion(String txtExcepcion, Color color) {
+
+        VAviso va  = new VAviso(vp, true, txtExcepcion, color);
         va.setVisible(true);
+
     }
 
 }

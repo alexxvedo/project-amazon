@@ -30,4 +30,9 @@ public class Distribuidor {
         return costeEnvio;
     }
 
+    @Override
+    public String toString() {
+        return "Distribuidor{" + "id=" + id + '}';
+    }
+
 }
