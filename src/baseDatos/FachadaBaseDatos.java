@@ -1,6 +1,8 @@
 package baseDatos;
 
 import aplicacion.Cliente;
+import aplicacion.Direccion;
+import aplicacion.MetodoPago;
 import aplicacion.Pedido;
 import aplicacion.Producto;
 import java.awt.Color;
@@ -17,6 +19,8 @@ public class FachadaBaseDatos {
     private DAOCliente daoClientes;
     private DAOProducto daoProductos;
     private DAOPedido daoPedidos;
+    private DAODireccion daoDireccion;
+    private DAOMetodoPago daoMetodoPago;
 
     public FachadaBaseDatos(aplicacion.FachadaAplicacion fa) {
 
@@ -41,6 +45,8 @@ public class FachadaBaseDatos {
             daoClientes = new DAOCliente(conexion, fa);
             daoProductos = new DAOProducto(conexion, fa);
             daoPedidos = new DAOPedido(conexion, fa);
+            daoDireccion = new DAODireccion(conexion, fa);
+            daoMetodoPago = new DAOMetodoPago(conexion, fa);
 
         } catch (FileNotFoundException f) {
 
@@ -65,12 +71,36 @@ public class FachadaBaseDatos {
         return daoClientes.validarUsuario(email, password);
     }
 
+    public int crearDireccion(Cliente c, Direccion d) {
+        return daoDireccion.crearDireccion(c, d);
+    }
+
+    public int crearMetodoPago(MetodoPago m) {
+        return daoMetodoPago.crearMetodoPago(m);
+    }
+
     public int actualizarCliente(Cliente c) {
         return daoClientes.actualizarCliente(c);
     }
 
+    public int actualizarMetodoPago(MetodoPago oldM, MetodoPago newM) {
+        return daoMetodoPago.actualizarMetodoPago(oldM, newM);
+    }
+
+    public int actualizarDireccion(Direccion d) {
+        return daoDireccion.actualizarDireccion(d);
+    }
+
     public int eliminarCliente(Cliente c) {
         return daoClientes.eliminarCliente(c);
+    }
+
+    public int eliminarDireccion(Direccion d) {
+        return daoDireccion.eliminarDireccion(d);
+    }
+
+    public int eliminarMetodoPago(MetodoPago m) {
+        return daoMetodoPago.eliminarMetodoPago(m);
     }
 
     public ArrayList<Producto> obtenerProductos(String nombre) {
@@ -79,6 +109,14 @@ public class FachadaBaseDatos {
 
     public ArrayList<Pedido> obtenerPedidos(Cliente c) {
         return daoPedidos.obtenerPedidos(c);
+    }
+
+    public ArrayList<Direccion> obtenerDirecciones(Cliente c) {
+        return daoDireccion.obtenerDirecciones(c);
+    }
+
+    public ArrayList<MetodoPago> obtenerMetodosPago(Cliente c) {
+        return daoMetodoPago.obtenerMetodosPago(c);
     }
 
 }

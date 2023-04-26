@@ -22,10 +22,26 @@ public class FachadaGui {
 
     }
 
-    public void verPerfil(Cliente cliente) {
+    public void verVentanaPerfil(Cliente cliente) {
 
         VCliente vc = new VCliente(vp, true, fa, cliente);
         vc.setVisible(true);
+
+    }
+    
+    
+    public void verVentanaDirecciones(Cliente cliente) {
+
+        VDirecciones vd = new VDirecciones(vp, true, fa, cliente);
+        vd.setVisible(true);
+
+    }
+    
+    
+    public void verVentanaMetodosPago(Cliente cliente) {
+
+        VMetodosPago vmp = new VMetodosPago(vp, true, fa, cliente);
+        vmp.setVisible(true);
 
     }
 

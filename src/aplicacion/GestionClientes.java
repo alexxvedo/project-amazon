@@ -14,8 +14,8 @@ public class GestionClientes {
         this.fbd = fbd;
     }
 
-    public void verPerfil() {
-        fgui.verPerfil(this.cliente);
+    public void verVentanaPerfil(Cliente c) {
+        fgui.verVentanaPerfil(c);
     }
 
     public Boolean comprobarAutentificacion(String email, String password) {
@@ -37,6 +37,10 @@ public class GestionClientes {
             this.cliente = null;
         }
         return res;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
     }
 
 }

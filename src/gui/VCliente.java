@@ -290,11 +290,11 @@ public class VCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_getPrimeBtnActionPerformed
 
     private void verDireccionesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verDireccionesBtnActionPerformed
-        // TODO add your handling code here:
+        this.fa.verDirecciones();
     }//GEN-LAST:event_verDireccionesBtnActionPerformed
 
     private void verMetodosPagoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verMetodosPagoBtnActionPerformed
-        // TODO add your handling code here:
+        this.fa.verMetodosPago();
     }//GEN-LAST:event_verMetodosPagoBtnActionPerformed
 
     private void saveEditBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveEditBtnActionPerformed

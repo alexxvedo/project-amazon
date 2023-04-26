@@ -3,11 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/ppabli/Desktop/project-amazon/src/aplicacion/MetodoPago.java</file>
-            <file>file:/Users/ppabli/Desktop/project-amazon/src/gui/ModeloTablaPedidos.java</file>
-            <file>file:/Users/ppabli/Desktop/project-amazon/src/baseDatos/DAOPedido.java</file>
-            <file>file:/Users/ppabli/Desktop/project-amazon/src/gui/ModeloTablaProductos.java</file>
-            <file>file:/Users/ppabli/Desktop/project-amazon/src/gui/VCliente.java</file>
+            <file>file:/Users/ppabli/Desktop/project-amazon/src/gui/VMetodosPago.java</file>
+            <file>file:/Users/ppabli/Desktop/project-amazon/src/gui/VDirecciones.java</file>
             <file>file:/Users/ppabli/Desktop/project-amazon/src/gui/VPrincipal.java</file>
         </group>
     </open-files>
