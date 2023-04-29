@@ -66,9 +66,9 @@ create table pedidos (
 	completado boolean not null default false,
 	precioTotal numeric(10,2) not null,
 	numTarjeta numeric(16, 0),
-	idDireccion serial,
-	idCliente serial,
-	idDistribuidor serial,
+	idDireccion int,
+	idCliente int,
+	idDistribuidor int,
 	constraint fk_numTarjeta foreign key (numTarjeta) references metodosPago(numeroTarjeta) on delete set null on update cascade,
 	constraint fk_direccion foreign key (idDireccion) references direcciones(id) on delete set null on update cascade,
 	constraint fk_cliente foreign key (idCliente) references clientes(id) on delete set null on update cascade,
@@ -76,7 +76,7 @@ create table pedidos (
 );
 
 create table informar (
-	idCliente serial,
+	idCliente int,
 	idEmpresa serial not null,
 	fecha timestamp not null default now(),
 	descripcion text not null,
@@ -86,12 +86,12 @@ create table informar (
 );
 
 create table valorar (
-	idCliente serial,
+	idCliente int,
 	idProducto serial not null,
 	fecha timestamp not null default now(),
-	nota integer not null,
+	nota numeric(2, 0) not null,
 	comentario text,
-	estadoLLegada integer,
+	estadoLLegada numeric(2, 0),
 	primary key (fecha, idCliente, idProducto),
 	constraint fk_cliente foreign key (idCliente) references clientes(id) on delete set null on update cascade,
 	constraint fk_producto foreign key (idProducto) references productos(id) on delete cascade on update cascade
