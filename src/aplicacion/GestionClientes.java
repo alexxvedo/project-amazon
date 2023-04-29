@@ -1,7 +1,7 @@
 package aplicacion;
 
-import gui.FachadaGui;
 import baseDatos.FachadaBaseDatos;
+import gui.FachadaGui;
 
 public class GestionClientes {
 
@@ -16,6 +16,10 @@ public class GestionClientes {
 
     public void verVentanaPerfil(Cliente c) {
         fgui.verVentanaPerfil(c);
+    }
+
+    public void verVentanaObtenerPrime(Cliente c) {
+        fgui.verVentanaObtenerPrime(c);
     }
 
     public Boolean comprobarAutentificacion(String email, String password) {

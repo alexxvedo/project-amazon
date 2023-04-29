@@ -66,13 +66,14 @@ public class DAOCliente extends AbstractDAO {
 
         try {
 
-            stmCliente = con.prepareStatement("update clientes set nombre = ?, telefono = ?, fechanacimiento = ?, email = ?, contrasena = ? where id = ?");
+            stmCliente = con.prepareStatement("update clientes set nombre = ?, telefono = ?, fechanacimiento = ?, prime = ?, email = ?, contrasena = ? where id = ?");
             stmCliente.setString(1, c.getNombre());
             stmCliente.setInt(2, c.getTelefono());
             stmCliente.setDate(3, java.sql.Date.valueOf(c.getFechaNacimientoString()));
-            stmCliente.setString(4, c.getEmail());
-            stmCliente.setString(5, c.getContrasena());
-            stmCliente.setInt(6, c.getId());
+            stmCliente.setBoolean(4, c.isPrime());
+            stmCliente.setString(5, c.getEmail());
+            stmCliente.setString(6, c.getContrasena());
+            stmCliente.setInt(7, c.getId());
             stmCliente.executeUpdate();
 
             res = 1;

@@ -2,6 +2,7 @@ package baseDatos;
 
 import aplicacion.Cliente;
 import aplicacion.Direccion;
+import aplicacion.Distribuidor;
 import aplicacion.MetodoPago;
 import aplicacion.Pedido;
 import aplicacion.Producto;
@@ -77,6 +78,10 @@ public class FachadaBaseDatos {
 
     public int crearMetodoPago(MetodoPago m) {
         return daoMetodoPago.crearMetodoPago(m);
+    }
+
+    public int crearPedido(Cliente c, MetodoPago m, Direccion d, Distribuidor dist, ArrayList<Producto> p, boolean f) {
+        return daoPedidos.crearPedido(c, m, d, dist, p, f);
     }
 
     public int actualizarCliente(Cliente c) {

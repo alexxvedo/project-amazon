@@ -52,6 +52,10 @@ public class FachadaAplicacion {
         return cmp.crearMetodoPago(m);
     }
 
+    public int crearPedido(Cliente c, MetodoPago m, Direccion d, Distribuidor dist, ArrayList<Producto> p, boolean f) {
+        return cpe.crearPedido(c, m, d, dist, p, f);
+    }
+
     public int actualizarCliente(Cliente c) {
         return cc.actualizarCliente(c);
     }
@@ -102,6 +106,10 @@ public class FachadaAplicacion {
 
     public void verDirecciones() {
         cd.verVentanaDirecciones(this.cc.getCliente());
+    }
+
+    public void verObtenerPrime() {
+        cc.verVentanaObtenerPrime(this.cc.getCliente());
     }
 
 }

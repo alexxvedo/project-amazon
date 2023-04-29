@@ -83,32 +83,18 @@ public class DAODireccion extends AbstractDAO {
             stmDireccion.setBoolean(5, d.isPreferida());
             stmDireccion.executeUpdate();
 
-            try {
+            stmIdDireccion = con.prepareStatement("select currval('direcciones_id_seq') as idDireccion");
+            rsIdDireccion = stmIdDireccion.executeQuery();
+            rsIdDireccion.next();
 
-                stmIdDireccion = con.prepareStatement("select currval('direcciones_id_seq') as idDireccion");
-                rsIdDireccion = stmIdDireccion.executeQuery();
-                rsIdDireccion.next();
+            int idDireccion = rsIdDireccion.getInt("idDireccion");
 
-                int idDireccion = rsIdDireccion.getInt("idDireccion");
+            stmResidir = con.prepareStatement("insert into residir values (?, ?)");
+            stmResidir.setInt(1, c.getId());
+            stmResidir.setInt(2, idDireccion);
+            stmResidir.executeUpdate();
 
-                stmResidir = con.prepareStatement("insert into residir values (?, ?)");
-                stmResidir.setInt(1, c.getId());
-                stmResidir.setInt(2, idDireccion);
-                stmResidir.executeUpdate();
-
-                res = 1;
-
-            } catch (SQLException e) {
-
-                System.out.println(e.getMessage());
-                this.getFachadaAplicacion().muestraExcepcion(e.getMessage(), Color.RED);
-                res = 0;
-
-            } finally {
-
-                stmIdDireccion.close();
-
-            }
+            res = 1;
 
         } catch (Exception e) {
 

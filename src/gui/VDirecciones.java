@@ -15,7 +15,7 @@ public class VDirecciones extends javax.swing.JDialog {
     private boolean isEditing;
     private Direccion selectedDir;
 
-    public VDirecciones(java.awt.Frame parent, boolean modal, aplicacion.FachadaAplicacion fa, Cliente cliente) {
+    public VDirecciones(java.awt.Frame parent, boolean modal, aplicacion.FachadaAplicacion fa, javax.swing.JDialog ventanaAnterior, Cliente cliente) {
         super(parent, modal);
         this.cliente = cliente;
         this.fa = fa;

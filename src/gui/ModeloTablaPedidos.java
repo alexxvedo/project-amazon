@@ -136,16 +136,16 @@ public class ModeloTablaPedidos extends AbstractTableModel {
                 resultado = pedidos.get(row).getPrecioTotal();
                 break;
             case 6:
-                resultado = pedidos.get(row).getTarjeta().toString();
+                resultado = pedidos.get(row).getTarjeta() != null ? pedidos.get(row).getTarjeta().toString() : "";
                 break;
             case 7:
-                resultado = pedidos.get(row).getDireccion().toString();
+                resultado = pedidos.get(row).getDireccion() != null ? pedidos.get(row).getDireccion().toString() : "";
                 break;
             case 8:
-                resultado = pedidos.get(row).getCliente().toString();
+                resultado = pedidos.get(row).getCliente() != null ? pedidos.get(row).getCliente().toString() : "";
                 break;
             case 9:
-                resultado = pedidos.get(row).getDistribuidor().toString();
+                resultado = pedidos.get(row).getDistribuidor() != null ? pedidos.get(row).getDistribuidor().toString() : "";
                 break;
         }
 

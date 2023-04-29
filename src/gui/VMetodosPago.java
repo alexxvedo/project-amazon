@@ -15,7 +15,7 @@ public class VMetodosPago extends javax.swing.JDialog {
     private boolean isEditing = false;
     private MetodoPago oldM;
 
-    public VMetodosPago(java.awt.Frame parent, boolean modal, aplicacion.FachadaAplicacion fa, Cliente cliente) {
+    public VMetodosPago(java.awt.Frame parent, boolean modal, aplicacion.FachadaAplicacion fa, javax.swing.JDialog ventanaAnterior, Cliente cliente) {
         super(parent, modal);
         this.cliente = cliente;
         this.fa = fa;
