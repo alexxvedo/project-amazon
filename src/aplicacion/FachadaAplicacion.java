@@ -2,6 +2,7 @@ package aplicacion;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class FachadaAplicacion {
 
@@ -12,6 +13,7 @@ public class FachadaAplicacion {
     GestionPedidos cpe;
     GestionDirecciones cd;
     GestionMetodosPago cmp;
+    GestionDistribuidor cdis;
 
     public FachadaAplicacion() {
         fgui = new gui.FachadaGui(this);
@@ -21,6 +23,7 @@ public class FachadaAplicacion {
         cpe = new GestionPedidos(fgui, fbd);
         cd = new GestionDirecciones(fgui, fbd);
         cmp = new GestionMetodosPago(fgui, fbd);
+        cdis = new GestionDistribuidor(fbd);
     }
 
     public static void main(String args[]) {
@@ -35,6 +38,8 @@ public class FachadaAplicacion {
     public void iniciaInterfazUsuario() {
         fgui.iniciaVista();
     }
+    
+    
 
     public void muestraExcepcion(String e, Color c) {
         fgui.muestraExcepcion(e, c);
@@ -95,7 +100,13 @@ public class FachadaAplicacion {
     public ArrayList<MetodoPago> obtenerMetodosPago(Cliente c) {
         return cmp.obtenerMetodosPago(c);
     }
+    
+    public ArrayList<Distribuidor> obtenerDistribuidores(){
+        return cdis.obtenerDistribuidores();
+    }
 
+    
+    
     public void verPerfil() {
         cc.verVentanaPerfil(this.cc.getCliente());
     }
@@ -110,6 +121,10 @@ public class FachadaAplicacion {
 
     public void verObtenerPrime() {
         cc.verVentanaObtenerPrime(this.cc.getCliente());
+    }
+    
+    public void verVentanaCesta(HashMap<Producto, Integer> productos){
+        fgui.verVentanaCesta(productos, this.cc.getCliente());
     }
 
 }

@@ -1,13 +1,16 @@
 package gui;
 
 import aplicacion.Cliente;
+import aplicacion.Producto;
 import java.awt.Color;
+import java.util.HashMap;
 
 public class FachadaGui {
 
     aplicacion.FachadaAplicacion fa;
     VPrincipal vp;
     VCliente vc;
+    
 
     public FachadaGui(aplicacion.FachadaAplicacion fa) {
         this.fa = fa;
@@ -29,6 +32,11 @@ public class FachadaGui {
         vc = new VCliente(vp, true, fa, cliente);
         vc.setVisible(true);
 
+    }
+    
+    public void verVentanaCesta(HashMap<Producto, Integer> productos, Cliente cliente){
+        VCesta vce = new VCesta(fa, productos, cliente);
+        vce.setVisible(true);
     }
 
     public void verVentanaObtenerPrime(Cliente cliente) {
@@ -56,5 +64,7 @@ public class FachadaGui {
         va.setVisible(true);
 
     }
+    
+    
 
 }

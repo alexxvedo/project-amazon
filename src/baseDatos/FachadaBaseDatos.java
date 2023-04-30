@@ -22,7 +22,8 @@ public class FachadaBaseDatos {
     private DAOPedido daoPedidos;
     private DAODireccion daoDireccion;
     private DAOMetodoPago daoMetodoPago;
-
+    private DAODistribuidor daoDistribuidor;
+    
     public FachadaBaseDatos(aplicacion.FachadaAplicacion fa) {
 
         Properties configuracion = new Properties();
@@ -48,6 +49,7 @@ public class FachadaBaseDatos {
             daoPedidos = new DAOPedido(conexion, fa);
             daoDireccion = new DAODireccion(conexion, fa);
             daoMetodoPago = new DAOMetodoPago(conexion, fa);
+            daoDistribuidor = new DAODistribuidor(conexion, fa);
 
         } catch (FileNotFoundException f) {
 
@@ -122,6 +124,10 @@ public class FachadaBaseDatos {
 
     public ArrayList<MetodoPago> obtenerMetodosPago(Cliente c) {
         return daoMetodoPago.obtenerMetodosPago(c);
+    }
+    
+    public ArrayList<Distribuidor> obtenerDistribuidores(){
+        return daoDistribuidor.obtenerDistribuidores();
     }
 
 }
