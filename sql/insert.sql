@@ -106,22 +106,22 @@ insert into metodosPago values
 	(9876543219876543, 16, false, false);
 
 insert into direcciones values
-	(default, 'Calle Portugal', 15, 'Madrid', 28001, true),
-	(default, 'Calle Francia', 45, 'Madrid', 28002, false),
-	(default, 'Calle Alemania', 8, 'Madrid', 28003, true),
-	(default, 'Calle Italia', 23, 'Madrid', 28002, true),
-	(default, 'Calle Inglaterra', 1, 'Madrid', 28001, false),
-	(default, 'Calle Holanda', 7, 'Madrid', 28003, true),
-	(default, 'Calle Mexico', 98, 'Madrid', 28001, true),
-	(default, 'Calle Rusia', 76, 'Barcelona', 08004, false),
-	(default, 'Calle China', 54, 'Barcelona', 08002, true),
-	(default, 'Calle Japon', 32, 'Barcelona', 08001, true),
-	(default, 'Calle Colombia', 10, 'Barcelona', 08004, false),
-	(default, 'Calle Taiwan', 4, 'Barcelona', 08002, true),
-	(default, 'Calle Grecia', 1, 'Sevilla', 41005, true),
-	(default, 'Calle Suiza', 2, 'Sevilla', 41003, false),
-	(default, 'Calle Albania', 3, 'Sevilla', 41001, true),
-	(default, 'Calle Argentina', 4, 'Sevilla', 41005, true);
+	(default, 1, 'Calle Portugal', 15, 'Madrid', 28001, true),
+	(default, 2, 'Calle Francia', 45, 'Madrid', 28002, false),
+	(default, 3, 'Calle Alemania', 8, 'Madrid', 28003, true),
+	(default, 4, 'Calle Italia', 23, 'Madrid', 28002, true),
+	(default, 5, 'Calle Inglaterra', 1, 'Madrid', 28001, false),
+	(default, 6, 'Calle Holanda', 7, 'Madrid', 28003, true),
+	(default, 7, 'Calle Mexico', 98, 'Madrid', 28001, true),
+	(default, 8, 'Calle Rusia', 76, 'Barcelona', 08004, false),
+	(default, 9, 'Calle China', 54, 'Barcelona', 08002, true),
+	(default, 10, 'Calle Japon', 32, 'Barcelona', 08001, true),
+	(default, 11, 'Calle Colombia', 10, 'Barcelona', 08004, false),
+	(default, 12, 'Calle Taiwan', 4, 'Barcelona', 08002, true),
+	(default, 13, 'Calle Grecia', 1, 'Sevilla', 41005, true),
+	(default, 14, 'Calle Suiza', 2, 'Sevilla', 41003, false),
+	(default, 15, 'Calle Albania', 3, 'Sevilla', 41001, true),
+	(default, 16, 'Calle Argentina', 4, 'Sevilla', 41005, true);
 
 insert into distribuidores values
 	(default, 'Seur', 981572390, 10.00),
@@ -194,21 +194,3 @@ insert into contener values
 	(14, 6, 1),
 	(15, 6, 1),
 	(16, 6, 1);
-
-insert into residir values
-	(1, 1),
-	(2, 2),
-	(3, 3),
-	(4, 4),
-	(5, 5),
-	(6, 6),
-	(7, 7),
-	(8, 8),
-	(9, 9),
-	(10, 10),
-	(11, 11),
-	(12, 12),
-	(13, 13),
-	(14, 14),
-	(15, 15),
-	(16, 16);

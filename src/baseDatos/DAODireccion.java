@@ -27,13 +27,13 @@ public class DAODireccion extends AbstractDAO {
 
         try {
 
-            stmDirecciones = con.prepareStatement("select d.* from direcciones as d inner join residir as r on r.idDireccion = d.id and r.idCliente = ?");
+            stmDirecciones = con.prepareStatement("select * from direcciones where idCliente = ?");
             stmDirecciones.setInt(1, c.getId());
             rsDirecciones = stmDirecciones.executeQuery();
 
             while (rsDirecciones.next()) {
 
-                Direccion direccion = new Direccion(rsDirecciones.getInt("id"), rsDirecciones.getString("calle"), rsDirecciones.getInt("numero"), rsDirecciones.getString("ciudad"), rsDirecciones.getInt("codigopostal"), rsDirecciones.getBoolean("preferida"));
+                Direccion direccion = new Direccion(rsDirecciones.getInt("id"), c, rsDirecciones.getString("calle"), rsDirecciones.getInt("numero"), rsDirecciones.getString("ciudad"), rsDirecciones.getInt("codigopostal"), rsDirecciones.getBoolean("preferida"));
                 direcciones.add(direccion);
 
             }
@@ -61,38 +61,24 @@ public class DAODireccion extends AbstractDAO {
 
     }
 
-    public int crearDireccion(Cliente c, Direccion d) {
+    public int crearDireccion(Direccion d) {
 
         int res = 0;
         Connection con;
         PreparedStatement stmDireccion = null;
-        PreparedStatement stmIdDireccion = null;
-        PreparedStatement stmResidir = null;
-
-        ResultSet rsIdDireccion;
 
         con = super.getConexion();
 
         try {
 
-            stmDireccion = con.prepareStatement("insert into direcciones values (default, ?, ?, ?, ?, ?)");
-            stmDireccion.setString(1, d.getCalle());
-            stmDireccion.setInt(2, d.getNumero());
-            stmDireccion.setString(3, d.getCiudad());
-            stmDireccion.setInt(4, d.getCodigoPostal());
-            stmDireccion.setBoolean(5, d.isPreferida());
+            stmDireccion = con.prepareStatement("insert into direcciones values (default, ?, ?, ?, ?, ?, ?)");
+            stmDireccion.setInt(1, d.getCliente().getId());
+            stmDireccion.setString(2, d.getCalle());
+            stmDireccion.setInt(3, d.getNumero());
+            stmDireccion.setString(4, d.getCiudad());
+            stmDireccion.setInt(5, d.getCodigoPostal());
+            stmDireccion.setBoolean(6, d.isPreferida());
             stmDireccion.executeUpdate();
-
-            stmIdDireccion = con.prepareStatement("select currval('direcciones_id_seq') as idDireccion");
-            rsIdDireccion = stmIdDireccion.executeQuery();
-            rsIdDireccion.next();
-
-            int idDireccion = rsIdDireccion.getInt("idDireccion");
-
-            stmResidir = con.prepareStatement("insert into residir values (?, ?)");
-            stmResidir.setInt(1, c.getId());
-            stmResidir.setInt(2, idDireccion);
-            stmResidir.executeUpdate();
 
             res = 1;
 

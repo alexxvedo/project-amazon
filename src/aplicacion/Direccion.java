@@ -3,14 +3,16 @@ package aplicacion;
 public class Direccion {
 
     private int id;
+    private Cliente cliente;
     private String calle;
     private int numero;
     private String ciudad;
     private int codigoPostal;
     private boolean preferida;
 
-    public Direccion(int id, String calle, int numero, String ciudad, int codigoPostal, boolean preferida) {
+    public Direccion(int id, Cliente cliente, String calle, int numero, String ciudad, int codigoPostal, boolean preferida) {
         this.id = id;
+        this.cliente = cliente;
         this.calle = calle;
         this.numero = numero;
         this.ciudad = ciudad;
@@ -20,6 +22,10 @@ public class Direccion {
 
     public int getId() {
         return id;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
     }
 
     public String getCalle() {

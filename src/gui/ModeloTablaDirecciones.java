@@ -1,5 +1,6 @@
 package gui;
 
+import aplicacion.Cliente;
 import aplicacion.Direccion;
 import javax.swing.table.AbstractTableModel;
 
@@ -12,7 +13,7 @@ public class ModeloTablaDirecciones extends AbstractTableModel {
     }
 
     public int getColumnCount() {
-        return 6;
+        return 7;
     }
 
     public int getRowCount() {
@@ -29,18 +30,21 @@ public class ModeloTablaDirecciones extends AbstractTableModel {
                 nombre = "Id";
                 break;
             case 1:
-                nombre = "Calle";
+                nombre = "Cliente";
                 break;
             case 2:
-                nombre = "Numero";
+                nombre = "Calle";
                 break;
             case 3:
-                nombre = "Ciudad";
+                nombre = "Numero";
                 break;
             case 4:
-                nombre = "Cod. Postal";
+                nombre = "Ciudad";
                 break;
             case 5:
+                nombre = "Cod. Postal";
+                break;
+            case 6:
                 nombre = "Preferida";
                 break;
         }
@@ -59,18 +63,21 @@ public class ModeloTablaDirecciones extends AbstractTableModel {
                 clase = java.lang.Integer.class;
                 break;
             case 1:
-                clase = java.lang.String.class;
+                clase = Cliente.class;
                 break;
             case 2:
-                clase = java.lang.Integer.class;
-                break;
-            case 3:
                 clase = java.lang.String.class;
                 break;
-            case 4:
+            case 3:
                 clase = java.lang.Integer.class;
                 break;
+            case 4:
+                clase = java.lang.String.class;
+                break;
             case 5:
+                clase = java.lang.Integer.class;
+                break;
+            case 6:
                 clase = java.lang.Boolean.class;
                 break;
         }
@@ -93,18 +100,21 @@ public class ModeloTablaDirecciones extends AbstractTableModel {
                 resultado = direcciones.get(row).getId();
                 break;
             case 1:
-                resultado = direcciones.get(row).getCalle();
+                resultado = direcciones.get(row).getCliente();
                 break;
             case 2:
-                resultado = direcciones.get(row).getNumero();
+                resultado = direcciones.get(row).getCalle();
                 break;
             case 3:
-                resultado = direcciones.get(row).getCiudad();
+                resultado = direcciones.get(row).getNumero();
                 break;
             case 4:
-                resultado = direcciones.get(row).getCodigoPostal();
+                resultado = direcciones.get(row).getCiudad();
                 break;
             case 5:
+                resultado = direcciones.get(row).getCodigoPostal();
+                break;
+            case 6:
                 resultado = direcciones.get(row).isPreferida();
                 break;
         }

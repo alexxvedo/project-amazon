@@ -16,20 +16,6 @@ create or replace view clientesMetodosPago as
 	right join metodosPago as m on m.idCliente = c.id
 	group by c.id
 
--- Vista que nos permite saber la cantidad de direcciones que tiene cada cliente
-create or replace view clientesDirecciones as
-	select c.*, d.* from residir as r
-	inner join direcciones as d on d.id = r.iddireccion
-	inner join clientes as c on c.id = r.idcliente
-
--- Vista que nos permite saber la cantidad de direcciones preferidas que tiene cada cliente
-create or replace view clientesDireccionesPreferidas as
-	select c.*, count(d.*) from residir as r
-	inner join direcciones as d on d.id = r.iddireccion
-	inner join clientes as c on c.id = r.idcliente
-	where d.preferida = true
-	group by c.id
-
 -- Vista que nos permite saber el dinero que ha gastado cada cliente
 create or replace view clientesDinero as
 	select c.*, sum(p.preciototal) from clientes as c

@@ -22,8 +22,8 @@ public class GestionDirecciones {
         return fbd.obtenerDirecciones(c);
     }
 
-    public int crearDireccion(Cliente c, Direccion d) {
-        return fbd.crearDireccion(c, d);
+    public int crearDireccion(Direccion d) {
+        return fbd.crearDireccion(d);
     }
 
     public int actualizarDireccion(Direccion d) {

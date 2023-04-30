@@ -44,11 +44,13 @@ create table metodosPago (
 
 create table direcciones (
 	id serial primary key,
+	idCliente serial not null,
 	calle varchar(125) not null,
 	numero integer not null,
 	ciudad varchar(50) not null,
 	codigoPostal numeric(5, 0) not null,
-	preferida boolean not null default false
+	preferida boolean not null default false,
+	constraint fk_cliente foreign key (idCliente) references clientes(id) on delete cascade on update cascade
 );
 
 create table distribuidores (
@@ -104,12 +106,4 @@ create table contener (
 	primary key (idPedido, idProducto),
 	constraint fk_pedido foreign key (idPedido) references pedidos(id) on delete cascade on update cascade,
 	constraint fk_producto foreign key (idProducto) references productos(id) on delete cascade on update cascade
-);
-
-create table residir (
-	idCliente serial not null,
-	idDireccion serial not null,
-	primary key (idCliente, idDireccion),
-	constraint fk_cliente foreign key (idCliente) references clientes(id) on delete cascade on update cascade,
-	constraint fk_direccion foreign key (idDireccion) references direcciones(id) on delete cascade on update cascade
 );

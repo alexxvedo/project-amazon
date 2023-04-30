@@ -239,8 +239,8 @@ public class VDirecciones extends javax.swing.JDialog {
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
 
-        Direccion d = new Direccion(-1, calleText.getText(), Integer.parseInt(numeroText.getText()), ciudadText.getText(), Integer.parseInt(codigoPostalText.getText()), preferidaBtn.isSelected());
-        int res = this.fa.crearDireccion(this.cliente, d);
+        Direccion d = new Direccion(-1, this.cliente, calleText.getText(), Integer.parseInt(numeroText.getText()), ciudadText.getText(), Integer.parseInt(codigoPostalText.getText()), preferidaBtn.isSelected());
+        int res = this.fa.crearDireccion(d);
 
         if (res == 1) {
 
@@ -253,7 +253,7 @@ public class VDirecciones extends javax.swing.JDialog {
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
 
-        Direccion d = new Direccion(selectedDir.getId(), calleText.getText(), Integer.parseInt(numeroText.getText()), ciudadText.getText(), Integer.parseInt(codigoPostalText.getText()), preferidaBtn.isSelected());
+        Direccion d = new Direccion(selectedDir.getId(), this.cliente, calleText.getText(), Integer.parseInt(numeroText.getText()), ciudadText.getText(), Integer.parseInt(codigoPostalText.getText()), preferidaBtn.isSelected());
         int res = this.fa.actualizarDireccion(d);
 
         if (res == 1) {

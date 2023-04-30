@@ -72,8 +72,8 @@ public class FachadaBaseDatos {
         return daoClientes.validarUsuario(email, password);
     }
 
-    public int crearDireccion(Cliente c, Direccion d) {
-        return daoDireccion.crearDireccion(c, d);
+    public int crearDireccion(Direccion d) {
+        return daoDireccion.crearDireccion(d);
     }
 
     public int crearMetodoPago(MetodoPago m) {

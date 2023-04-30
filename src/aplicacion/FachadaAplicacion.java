@@ -44,8 +44,8 @@ public class FachadaAplicacion {
         return cc.comprobarAutentificacion(nombre, password);
     }
 
-    public int crearDireccion(Cliente c, Direccion d) {
-        return cd.crearDireccion(c, d);
+    public int crearDireccion(Direccion d) {
+        return cd.crearDireccion(d);
     }
 
     public int crearMetodoPago(MetodoPago m) {

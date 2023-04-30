@@ -60,7 +60,7 @@ public class DAOPedido extends AbstractDAO {
                 Direccion direccion = null;
 
                 if (rsDireccion.next()) {
-                    direccion = new Direccion(rsDireccion.getInt("id"), rsDireccion.getString("calle"), rsDireccion.getInt("numero"), rsDireccion.getString("ciudad"), rsDireccion.getInt("codigopostal"), rsDireccion.getBoolean("preferida"));
+                    direccion = new Direccion(rsDireccion.getInt("id"), c, rsDireccion.getString("calle"), rsDireccion.getInt("numero"), rsDireccion.getString("ciudad"), rsDireccion.getInt("codigopostal"), rsDireccion.getBoolean("preferida"));
                 }
 
                 PreparedStatement stmDistribuidor = con.prepareStatement("select * from distribuidores where id = ?");
