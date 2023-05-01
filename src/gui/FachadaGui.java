@@ -10,7 +10,6 @@ public class FachadaGui {
     aplicacion.FachadaAplicacion fa;
     VPrincipal vp;
     VCliente vc;
-    
 
     public FachadaGui(aplicacion.FachadaAplicacion fa) {
         this.fa = fa;
@@ -33,15 +32,19 @@ public class FachadaGui {
         vc.setVisible(true);
 
     }
-    
-    public void verVentanaCesta(HashMap<Producto, Integer> productos, Cliente cliente){
-        VCesta vce = new VCesta(fa, productos, cliente);
+
+    public void verVentanaCesta(HashMap<Producto, Integer> productos, Cliente cliente) {
+
+        VCesta vce = new VCesta(vp, true, fa, productos, cliente);
         vce.setVisible(true);
+
     }
 
     public void verVentanaObtenerPrime(Cliente cliente) {
+
         VObtenerPrime vPrime = new VObtenerPrime(vp, true, fa, vc, cliente);
         vPrime.setVisible(true);
+
     }
 
     public void verVentanaDirecciones(Cliente cliente) {
@@ -64,7 +67,5 @@ public class FachadaGui {
         va.setVisible(true);
 
     }
-    
-    
 
 }

@@ -45,9 +45,9 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="verPerfilBtn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace pref="137" max="32767" attributes="0"/>
-                              <Component id="CantidadSpinner" min="-2" pref="101" max="-2" attributes="0"/>
+                              <Component id="cantidadSpinner" min="-2" pref="101" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="AnhadirCestaBtn" min="-2" max="-2" attributes="0"/>
+                              <Component id="anhadirCestaBtn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -78,8 +78,8 @@
                   <Component id="exitBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="VerCestaBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="verPerfilBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="AnhadirCestaBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="CantidadSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="anhadirCestaBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cantidadSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -148,15 +148,15 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="AnhadirCestaBtn">
+    <Component class="javax.swing.JButton" name="anhadirCestaBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="A&#xf1;adir a cesta"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AnhadirCestaBtnActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="anhadirCestaBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JSpinner" name="CantidadSpinner">
+    <Component class="javax.swing.JSpinner" name="cantidadSpinner">
     </Component>
   </SubComponents>
 </Form>

@@ -3,24 +3,18 @@ package gui;
 import java.util.*;
 import aplicacion.Producto;
 import javax.swing.ListSelectionModel;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 public class VPrincipal extends javax.swing.JFrame {
 
     aplicacion.FachadaAplicacion fa;
-    
-    
-    HashMap<Producto, Integer> productosCesta = new HashMap<>(); 
+
+    public HashMap<Producto, Integer> productosCesta = new HashMap<>();
     private boolean isEditing;
     private Producto selectedProd;
     private int cantidadProductoActual = 0;
-    
-    
-    public void setCantidadProductoActual(int i) {
-        this.cantidadProductoActual = i;
-    }
-    
 
     public VPrincipal(aplicacion.FachadaAplicacion fa) {
         this.fa = fa;
@@ -41,12 +35,11 @@ public class VPrincipal extends javax.swing.JFrame {
         }
 
     }
-    
-    
+
     private void customBehavior() {
 
-        AnhadirCestaBtn.setVisible(false);
-        CantidadSpinner.setVisible(false);
+        anhadirCestaBtn.setVisible(false);
+        cantidadSpinner.setVisible(false);
 
         this.tablaProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
@@ -57,10 +50,8 @@ public class VPrincipal extends javax.swing.JFrame {
 
                 isEditing = tablaProductos.getSelectedRows().length != 0;
 
-                
-                AnhadirCestaBtn.setVisible(isEditing);
-                CantidadSpinner.setVisible(isEditing);
-                
+                anhadirCestaBtn.setVisible(isEditing);
+                cantidadSpinner.setVisible(isEditing);
 
                 if (isEditing) {
 
@@ -68,7 +59,10 @@ public class VPrincipal extends javax.swing.JFrame {
                     Producto p = ((ModeloTablaProductos) tablaProductos.getModel()).obtenerProducto(row);
 
                     selectedProd = p;
-                } 
+                    cantidadSpinner.setModel(new SpinnerNumberModel(1, 1, p.getExistencias(), 1));
+
+                }
+
             }
 
         });
@@ -86,8 +80,8 @@ public class VPrincipal extends javax.swing.JFrame {
         verPerfilBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaProductos = new javax.swing.JTable();
-        AnhadirCestaBtn = new javax.swing.JButton();
-        CantidadSpinner = new javax.swing.JSpinner();
+        anhadirCestaBtn = new javax.swing.JButton();
+        cantidadSpinner = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Amazon");
@@ -128,10 +122,10 @@ public class VPrincipal extends javax.swing.JFrame {
         tablaProductos.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tablaProductos);
 
-        AnhadirCestaBtn.setText("Añadir a cesta");
-        AnhadirCestaBtn.addActionListener(new java.awt.event.ActionListener() {
+        anhadirCestaBtn.setText("Añadir a cesta");
+        anhadirCestaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AnhadirCestaBtnActionPerformed(evt);
+                anhadirCestaBtnActionPerformed(evt);
             }
         });
 
@@ -154,9 +148,9 @@ public class VPrincipal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(verPerfilBtn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
-                                .addComponent(CantidadSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cantidadSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(AnhadirCestaBtn)
+                                .addComponent(anhadirCestaBtn)
                                 .addGap(18, 18, 18)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(exitBtn)
@@ -179,8 +173,8 @@ public class VPrincipal extends javax.swing.JFrame {
                     .addComponent(exitBtn)
                     .addComponent(VerCestaBtn)
                     .addComponent(verPerfilBtn)
-                    .addComponent(AnhadirCestaBtn)
-                    .addComponent(CantidadSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(anhadirCestaBtn)
+                    .addComponent(cantidadSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -199,25 +193,25 @@ public class VPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_exitBtnActionPerformed
 
     private void verPerfilBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verPerfilBtnActionPerformed
-        fa.verPerfil();
+        this.fa.verPerfil();
     }//GEN-LAST:event_verPerfilBtnActionPerformed
 
-    private void AnhadirCestaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnhadirCestaBtnActionPerformed
-        cantidadProductoActual = (int) CantidadSpinner.getValue();
-        productosCesta.put(selectedProd, cantidadProductoActual);
-        for (Producto prod : this.productosCesta.keySet()){
-            System.out.println("Producto: " + prod.getId() + ", cantidad: " + productosCesta.get(prod));
+    private void anhadirCestaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anhadirCestaBtnActionPerformed
+        this.cantidadProductoActual = (int) this.cantidadSpinner.getValue();
+        if (cantidadProductoActual <= 0) {
+            return;
         }
-    }//GEN-LAST:event_AnhadirCestaBtnActionPerformed
+        this.productosCesta.put(this.selectedProd, this.cantidadProductoActual);
+    }//GEN-LAST:event_anhadirCestaBtnActionPerformed
 
     private void VerCestaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerCestaBtnActionPerformed
-        fa.verVentanaCesta(productosCesta);
+        this.fa.verVentanaCesta(productosCesta);
     }//GEN-LAST:event_VerCestaBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AnhadirCestaBtn;
-    private javax.swing.JSpinner CantidadSpinner;
     private javax.swing.JButton VerCestaBtn;
+    private javax.swing.JButton anhadirCestaBtn;
+    private javax.swing.JSpinner cantidadSpinner;
     private javax.swing.JButton exitBtn;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton searchBtn;

@@ -11,6 +11,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Properties;
 
 public class FachadaBaseDatos {
@@ -82,7 +83,7 @@ public class FachadaBaseDatos {
         return daoMetodoPago.crearMetodoPago(m);
     }
 
-    public int crearPedido(Cliente c, MetodoPago m, Direccion d, Distribuidor dist, ArrayList<Producto> p, boolean f) {
+    public int crearPedido(Cliente c, MetodoPago m, Direccion d, Distribuidor dist, HashMap<Producto, Integer> p, boolean f) {
         return daoPedidos.crearPedido(c, m, d, dist, p, f);
     }
 

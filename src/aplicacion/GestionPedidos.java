@@ -3,6 +3,7 @@ package aplicacion;
 import baseDatos.FachadaBaseDatos;
 import gui.FachadaGui;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class GestionPedidos {
 
@@ -18,7 +19,7 @@ public class GestionPedidos {
         return fbd.obtenerPedidos(c);
     }
 
-    public int crearPedido(Cliente c, MetodoPago m, Direccion d, Distribuidor dist, ArrayList<Producto> p, boolean f) {
+    public int crearPedido(Cliente c, MetodoPago m, Direccion d, Distribuidor dist, HashMap<Producto, Integer> p, boolean f) {
         return fbd.crearPedido(c, m, d, dist, p, f);
     }
 

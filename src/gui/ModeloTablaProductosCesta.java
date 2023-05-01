@@ -1,7 +1,9 @@
 package gui;
 
-
 import aplicacion.Producto;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.table.*;
 
 public class ModeloTablaProductosCesta extends AbstractTableModel {
@@ -107,9 +109,18 @@ public class ModeloTablaProductosCesta extends AbstractTableModel {
 
     }
 
-    public void setFilas(java.util.List<Producto> productos, java.util.List<Integer> cantidades) {
-        this.productos = productos;
-        this.cantidades = cantidades;
+    public void setFilas(HashMap<Producto, Integer> productos) {
+
+        this.productos = new ArrayList<>();
+        this.cantidades = new ArrayList<>();
+        
+        for (Map.Entry<Producto, Integer> set : productos.entrySet()) {
+            Producto key = set.getKey();
+            Integer value = set.getValue();
+            this.productos.add(key);
+            this.cantidades.add(value);
+        }
+
         fireTableDataChanged();
     }
 

@@ -3,22 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/alumnogreibd/Documentos/project-amazon/src/gui/VCesta.java</file>
-            <file>file:/home/alumnogreibd/Documentos/project-amazon/src/gui/FachadaGui.java</file>
-            <file>file:/home/alumnogreibd/Documentos/project-amazon/src/baseDatos/FachadaBaseDatos.java</file>
-            <file>file:/home/alumnogreibd/Documentos/project-amazon/src/gui/VDirecciones.java</file>
-            <file>file:/home/alumnogreibd/Documentos/project-amazon/src/aplicacion/MetodoPago.java</file>
-            <file>file:/home/alumnogreibd/Documentos/project-amazon/src/aplicacion/GestionPedidos.java</file>
-            <file>file:/home/alumnogreibd/Documentos/project-amazon/src/gui/VMetodosPago.java</file>
-            <file>file:/home/alumnogreibd/Documentos/project-amazon/src/aplicacion/GestionDistribuidor.java</file>
-            <file>file:/home/alumnogreibd/Documentos/project-amazon/src/baseDatos/DAOPedido.java</file>
-            <file>file:/home/alumnogreibd/Documentos/project-amazon/src/gui/ModeloTablaProductos.java</file>
-            <file>file:/home/alumnogreibd/Documentos/project-amazon/src/gui/VCliente.java</file>
-            <file>file:/home/alumnogreibd/Documentos/project-amazon/src/baseDatos/DAODistribuidor.java</file>
-            <file>file:/home/alumnogreibd/Documentos/project-amazon/src/aplicacion/GestionDirecciones.java</file>
-            <file>file:/home/alumnogreibd/Documentos/project-amazon/src/aplicacion/Distribuidor.java</file>
-            <file>file:/home/alumnogreibd/Documentos/project-amazon/src/baseDatos/DAOProducto.java</file>
-            <file>file:/home/alumnogreibd/Documentos/project-amazon/src/baseDatos/DAODireccion.java</file>
+            <file>file:/Users/ppabli/Desktop/project-amazon/src/gui/VObtenerPrime.java</file>
+            <file>file:/Users/ppabli/Desktop/project-amazon/src/aplicacion/GestionPedidos.java</file>
+            <file>file:/Users/ppabli/Desktop/project-amazon/src/gui/VCesta.java</file>
+            <file>file:/Users/ppabli/Desktop/project-amazon/src/gui/VCliente.java</file>
         </group>
     </open-files>
 </project-private>

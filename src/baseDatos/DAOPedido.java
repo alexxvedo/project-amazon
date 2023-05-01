@@ -1,7 +1,6 @@
 package baseDatos;
 
 import aplicacion.Cliente;
-import aplicacion.Contener;
 import aplicacion.Direccion;
 import aplicacion.Distribuidor;
 import aplicacion.MetodoPago;
@@ -101,7 +100,7 @@ public class DAOPedido extends AbstractDAO {
 
     }
 
-    public int crearPedido(Cliente c, MetodoPago m, Direccion d, Distribuidor dist, ArrayList<Producto> p, boolean force) {
+    public int crearPedido(Cliente c, MetodoPago m, Direccion d, Distribuidor dist, HashMap<Producto, Integer> p, boolean force) {
 
         int res = 0;
         Connection con;
@@ -117,34 +116,17 @@ public class DAOPedido extends AbstractDAO {
 
         try {
 
-            Map<Integer, Contener> productosFinal = new HashMap<>();
             float precioTotal = 0;
 
-            for (Producto producto : p) {
+            for (Map.Entry<Producto, Integer> set : p.entrySet()) {
 
-                Contener cTemp = productosFinal.get(producto.getId());
+                if (set.getValue() > set.getKey().getExistencias()) {
 
-                if (cTemp != null) {
-
-                    if (cTemp.getProducto().getExistencias() < cTemp.getCantidad() + 1) {
-                        continue;
-                    }
-
-                    Contener newContener = new Contener(null, cTemp.getProducto(), cTemp.getCantidad() + 1);
-                    productosFinal.put(producto.getId(), newContener);
-                    precioTotal += producto.getPrecio();
-
-                } else {
-
-                    if (producto.getExistencias() < 1) {
-                        continue;
-                    }
-
-                    Contener newContener = new Contener(null, producto, 1);
-                    productosFinal.put(producto.getId(), newContener);
-                    precioTotal += producto.getPrecio();
+                    throw new Exception("Cantidad mayor que existencias");
 
                 }
+
+                precioTotal += set.getKey().getPrecio() * set.getValue();
 
             }
 
@@ -162,6 +144,10 @@ public class DAOPedido extends AbstractDAO {
                 stmPedido.setDate(1, new java.sql.Date(fechaActual.getTime()));
                 stmPedido.setDate(2, new java.sql.Date(fechaActual.getTime()));
                 stmPedido.setBoolean(3, true);
+            } else {
+                stmPedido.setNull(1, java.sql.Types.DATE);
+                stmPedido.setNull(2, java.sql.Types.DATE);
+                stmPedido.setBoolean(3, false);
             }
 
             if (d != null) {
@@ -184,17 +170,17 @@ public class DAOPedido extends AbstractDAO {
 
             int idPedido = rsIdPedido.getInt("idPedido");
 
-            for (Map.Entry<Integer, Contener> set : productosFinal.entrySet()) {
+            for (Map.Entry<Producto, Integer> set : p.entrySet()) {
 
                 stmContener = con.prepareStatement("insert into contener values (?, ?, ?)");
                 stmContener.setInt(1, idPedido);
-                stmContener.setInt(2, set.getValue().getProducto().getId());
-                stmContener.setInt(3, set.getValue().getCantidad());
+                stmContener.setInt(2, set.getKey().getId());
+                stmContener.setInt(3, set.getValue());
                 stmContener.executeUpdate();
 
                 stmProducto = con.prepareStatement("update productos set existencias = existencias - ? where id = ?");
-                stmProducto.setInt(1, set.getValue().getCantidad());
-                stmProducto.setInt(2, set.getValue().getProducto().getId());
+                stmProducto.setInt(1, set.getValue());
+                stmProducto.setInt(2, set.getKey().getId());
                 stmProducto.executeUpdate();
 
             }

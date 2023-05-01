@@ -4,7 +4,7 @@ import aplicacion.Cliente;
 import aplicacion.MetodoPago;
 import aplicacion.Producto;
 import java.awt.Color;
-import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -187,7 +187,8 @@ public class VObtenerPrime extends javax.swing.JDialog {
 
         MetodoPago m = ((ModeloTablaMetodosPago) tablaMetodosPago.getModel()).obtenerMetodoPago(row);
 
-        ArrayList<Producto> productos = this.fa.obtenerProductos(this.primeName);
+        HashMap<Producto, Integer> productos = new HashMap<>();
+        productos.put(prime, 1);
 
         int res = this.fa.crearPedido(cliente, m, null, null, productos, true);
 

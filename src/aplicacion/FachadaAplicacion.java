@@ -57,7 +57,7 @@ public class FachadaAplicacion {
         return cmp.crearMetodoPago(m);
     }
 
-    public int crearPedido(Cliente c, MetodoPago m, Direccion d, Distribuidor dist, ArrayList<Producto> p, boolean f) {
+    public int crearPedido(Cliente c, MetodoPago m, Direccion d, Distribuidor dist, HashMap<Producto, Integer> p, boolean f) {
         return cpe.crearPedido(c, m, d, dist, p, f);
     }
 
