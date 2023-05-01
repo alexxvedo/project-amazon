@@ -38,8 +38,14 @@ public class FachadaAplicacion {
     public void iniciaInterfazUsuario() {
         fgui.iniciaVista();
     }
-    
-    
+
+    public void insertarProductoCesta(Producto p, int cantidad, boolean isUpdate) {
+        this.cpe.insertarProducto(p, cantidad, isUpdate);
+    }
+
+    public void eliminarProductoCesta(Producto p) {
+        this.cpe.eliminarProducto(p);
+    }
 
     public void muestraExcepcion(String e, Color c) {
         fgui.muestraExcepcion(e, c);
@@ -88,6 +94,10 @@ public class FachadaAplicacion {
     public ArrayList<Producto> obtenerProductos(String nombre) {
         return cp.obtenerProductos(nombre);
     }
+    
+    public HashMap<Producto, Integer> obtenerCesta() {
+        return cpe.getCestaProductos();
+    }
 
     public ArrayList<Pedido> obtenerPedidos(Cliente c) {
         return cpe.obtenerPedidos(c);
@@ -100,13 +110,11 @@ public class FachadaAplicacion {
     public ArrayList<MetodoPago> obtenerMetodosPago(Cliente c) {
         return cmp.obtenerMetodosPago(c);
     }
-    
-    public ArrayList<Distribuidor> obtenerDistribuidores(){
+
+    public ArrayList<Distribuidor> obtenerDistribuidores() {
         return cdis.obtenerDistribuidores();
     }
 
-    
-    
     public void verPerfil() {
         cc.verVentanaPerfil(this.cc.getCliente());
     }
@@ -122,9 +130,9 @@ public class FachadaAplicacion {
     public void verObtenerPrime() {
         cc.verVentanaObtenerPrime(this.cc.getCliente());
     }
-    
-    public void verVentanaCesta(HashMap<Producto, Integer> productos){
-        fgui.verVentanaCesta(productos, this.cc.getCliente());
+
+    public void verVentanaCesta() {
+        fgui.verVentanaCesta(this.cc.getCliente());
     }
 
 }

@@ -1,9 +1,7 @@
 package gui;
 
 import aplicacion.Cliente;
-import aplicacion.Producto;
 import java.awt.Color;
-import java.util.HashMap;
 
 public class FachadaGui {
 
@@ -33,9 +31,9 @@ public class FachadaGui {
 
     }
 
-    public void verVentanaCesta(HashMap<Producto, Integer> productos, Cliente cliente) {
+    public void verVentanaCesta(Cliente cliente) {
 
-        VCesta vce = new VCesta(vp, true, fa, productos, cliente);
+        VCesta vce = new VCesta(vp, true, fa, cliente);
         vce.setVisible(true);
 
     }

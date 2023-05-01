@@ -3,10 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/Users/ppabli/Desktop/project-amazon/src/gui/VMetodosPago.java</file>
+            <file>file:/Users/ppabli/Desktop/project-amazon/src/aplicacion/GestionDistribuidor.java</file>
             <file>file:/Users/ppabli/Desktop/project-amazon/src/gui/VObtenerPrime.java</file>
+            <file>file:/Users/ppabli/Desktop/project-amazon/src/gui/FachadaGui.java</file>
+            <file>file:/Users/ppabli/Desktop/project-amazon/src/baseDatos/FachadaBaseDatos.java</file>
+            <file>file:/Users/ppabli/Desktop/project-amazon/src/gui/VDirecciones.java</file>
+            <file>file:/Users/ppabli/Desktop/project-amazon/src/gui/ModeloTablaProductosCesta.java</file>
+            <file>file:/Users/ppabli/Desktop/project-amazon/src/gui/VAviso.java</file>
+            <file>file:/Users/ppabli/Desktop/project-amazon/src/baseDatos/DAODistribuidor.java</file>
+            <file>file:/Users/ppabli/Desktop/project-amazon/src/aplicacion/FachadaAplicacion.java</file>
+            <file>file:/Users/ppabli/Desktop/project-amazon/src/gui/ModeloTablaProductos.java</file>
+            <file>file:/Users/ppabli/Desktop/project-amazon/src/aplicacion/GestionProductos.java</file>
+            <file>file:/Users/ppabli/Desktop/project-amazon/src/gui/VAutentificacion.java</file>
             <file>file:/Users/ppabli/Desktop/project-amazon/src/aplicacion/GestionPedidos.java</file>
             <file>file:/Users/ppabli/Desktop/project-amazon/src/gui/VCesta.java</file>
             <file>file:/Users/ppabli/Desktop/project-amazon/src/gui/VCliente.java</file>
+            <file>file:/Users/ppabli/Desktop/project-amazon/src/gui/VPrincipal.java</file>
         </group>
     </open-files>
 </project-private>

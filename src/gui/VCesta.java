@@ -16,7 +16,6 @@ import javax.swing.event.ListSelectionListener;
 
 public class VCesta extends javax.swing.JDialog {
 
-    private HashMap<Producto, Integer> productos;
     private Cliente cliente;
     private aplicacion.FachadaAplicacion fa;
     private boolean isProductEditing;
@@ -28,11 +27,10 @@ public class VCesta extends javax.swing.JDialog {
 
     private float totalPagar = 0f;
 
-    public VCesta(java.awt.Frame parent, boolean modal, aplicacion.FachadaAplicacion fa, HashMap<Producto, Integer> cesta, Cliente cliente) {
+    public VCesta(java.awt.Frame parent, boolean modal, aplicacion.FachadaAplicacion fa, Cliente cliente) {
 
         super(parent, modal);
 
-        this.productos = cesta;
         this.cliente = cliente;
         this.fa = fa;
 
@@ -49,7 +47,7 @@ public class VCesta extends javax.swing.JDialog {
 
         this.totalPagar = 0;
 
-        for (Map.Entry<Producto, Integer> set : productos.entrySet()) {
+        for (Map.Entry<Producto, Integer> set : this.fa.obtenerCesta().entrySet()) {
 
             Producto key = set.getKey();
             Integer value = set.getValue();
@@ -65,7 +63,7 @@ public class VCesta extends javax.swing.JDialog {
 
         ModeloTablaProductosCesta m = (ModeloTablaProductosCesta) this.tablaProductosCesta.getModel();
 
-        m.setFilas(productos);
+        m.setFilas(this.fa.obtenerCesta());
 
         if (m.getRowCount() > 0) {
 
@@ -115,7 +113,7 @@ public class VCesta extends javax.swing.JDialog {
             @Override
             public void stateChanged(ChangeEvent e) {
 
-                productos.put(selectedProd, (int) cantidadSpinner.getValue());
+                fa.insertarProductoCesta(selectedProd, (int) cantidadSpinner.getValue(), true);
                 anhadirProductos();
                 getTotal();
 
@@ -137,6 +135,8 @@ public class VCesta extends javax.swing.JDialog {
 
                     int row = tablaProductosCesta.getSelectedRow();
                     selectedProd = ((ModeloTablaProductosCesta) tablaProductosCesta.getModel()).obtenerProducto(row);
+
+                    HashMap<Producto, Integer> productos = fa.obtenerCesta();
 
                     cantidadSpinner.setModel(new SpinnerNumberModel((int) productos.get(selectedProd), 1, selectedProd.getExistencias(), 1));
 
@@ -206,7 +206,7 @@ public class VCesta extends javax.swing.JDialog {
 
         jMenuItem1.setText("jMenuItem1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Productos:");
 
@@ -292,9 +292,7 @@ public class VCesta extends javax.swing.JDialog {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel4))
+                    .addComponent(jLabel4)
                     .addComponent(totalPagarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -308,13 +306,15 @@ public class VCesta extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void eliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarBtnActionPerformed
-        this.productos.remove(this.selectedProd);
+        this.fa.eliminarProductoCesta(selectedProd);
         this.anhadirProductos();
         this.getTotal();
     }//GEN-LAST:event_eliminarBtnActionPerformed
     private void pagarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagarBtnActionPerformed
 
-        if (this.productos.isEmpty() || this.selectedDir == null || this.selectedMetodoPago == null) {
+        HashMap<Producto, Integer> productos = fa.obtenerCesta();
+
+        if (productos.isEmpty() || this.selectedDir == null || this.selectedMetodoPago == null) {
             return;
         }
 

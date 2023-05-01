@@ -1,6 +1,5 @@
 package gui;
 
-import java.util.*;
 import aplicacion.Producto;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
@@ -11,7 +10,6 @@ public class VPrincipal extends javax.swing.JFrame {
 
     aplicacion.FachadaAplicacion fa;
 
-    public HashMap<Producto, Integer> productosCesta = new HashMap<>();
     private boolean isEditing;
     private Producto selectedProd;
     private int cantidadProductoActual = 0;
@@ -201,11 +199,11 @@ public class VPrincipal extends javax.swing.JFrame {
         if (cantidadProductoActual <= 0) {
             return;
         }
-        this.productosCesta.put(this.selectedProd, this.cantidadProductoActual);
+        this.fa.insertarProductoCesta(this.selectedProd, this.cantidadProductoActual, false);
     }//GEN-LAST:event_anhadirCestaBtnActionPerformed
 
     private void VerCestaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerCestaBtnActionPerformed
-        this.fa.verVentanaCesta(productosCesta);
+        this.fa.verVentanaCesta();
     }//GEN-LAST:event_VerCestaBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

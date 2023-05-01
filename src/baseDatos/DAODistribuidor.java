@@ -54,7 +54,6 @@ public class DAODistribuidor extends AbstractDAO {
             }
 
         }
-        System.out.println(distribuidores.toString());
 
         return distribuidores;
 
