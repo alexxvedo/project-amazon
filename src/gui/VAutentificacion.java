@@ -6,9 +6,9 @@ public class VAutentificacion extends javax.swing.JDialog {
 
     aplicacion.FachadaAplicacion fa;
 
-    public VAutentificacion(java.awt.Frame parent, boolean modal, aplicacion.FachadaAplicacion fa) {
+    public VAutentificacion(boolean modal, aplicacion.FachadaAplicacion fa) {
 
-        super(parent, modal);
+        //super(parent, modal);
         this.fa = fa;
         initComponents();
         etiquetaFallo.setVisible(false);

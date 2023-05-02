@@ -11,17 +11,20 @@ public class FachadaGui {
 
     public FachadaGui(aplicacion.FachadaAplicacion fa) {
         this.fa = fa;
-        this.vp = new VPrincipal(fa);
     }
 
     public void iniciaVista() {
 
         VAutentificacion va;
 
-        va  = new VAutentificacion(vp, true, fa);
-        vp.setVisible(true);
+        va = new VAutentificacion(true, fa);
         va.setVisible(true);
 
+    }
+    
+    public void verVentanaPrincipal(Cliente cliente){
+        this.vp = new VPrincipal(fa, cliente);
+        vp.setVisible(true);
     }
 
     public void verVentanaPerfil(Cliente cliente) {
@@ -57,6 +60,11 @@ public class FachadaGui {
         VMetodosPago vmp = new VMetodosPago(vp, true, fa, vc, cliente);
         vmp.setVisible(true);
 
+    }
+    
+    public void verVentanaAnhadirProducto(){
+        VAnhadirProducto vanha = new VAnhadirProducto(vp, true, fa);
+        vanha.setVisible(true);
     }
 
     public void muestraExcepcion(String txtExcepcion, Color color) {

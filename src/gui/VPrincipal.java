@@ -1,6 +1,7 @@
 package gui;
 
 import aplicacion.Producto;
+import aplicacion.Cliente;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ListSelectionEvent;
@@ -13,9 +14,12 @@ public class VPrincipal extends javax.swing.JFrame {
     private boolean isEditing;
     private Producto selectedProd;
     private int cantidadProductoActual = 0;
+    private Cliente clienteActual;
 
-    public VPrincipal(aplicacion.FachadaAplicacion fa) {
+    public VPrincipal(aplicacion.FachadaAplicacion fa, Cliente cliente) {
         this.fa = fa;
+        this.clienteActual = cliente;
+        
         initComponents();
         customBehavior();
     }
@@ -38,6 +42,12 @@ public class VPrincipal extends javax.swing.JFrame {
 
         anhadirCestaBtn.setVisible(false);
         cantidadSpinner.setVisible(false);
+        
+        if(clienteActual.getEmail().equals("admin")){
+            anhadirProductoBtn.setVisible(true);
+        }else {
+            anhadirProductoBtn.setVisible(false);
+        }
 
         this.tablaProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
@@ -80,6 +90,7 @@ public class VPrincipal extends javax.swing.JFrame {
         tablaProductos = new javax.swing.JTable();
         anhadirCestaBtn = new javax.swing.JButton();
         cantidadSpinner = new javax.swing.JSpinner();
+        anhadirProductoBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Amazon");
@@ -127,6 +138,13 @@ public class VPrincipal extends javax.swing.JFrame {
             }
         });
 
+        anhadirProductoBtn.setText("Añadir producto");
+        anhadirProductoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                anhadirProductoBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -145,7 +163,9 @@ public class VPrincipal extends javax.swing.JFrame {
                                 .addComponent(VerCestaBtn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(verPerfilBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(anhadirProductoBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(cantidadSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(anhadirCestaBtn)
@@ -172,7 +192,8 @@ public class VPrincipal extends javax.swing.JFrame {
                     .addComponent(VerCestaBtn)
                     .addComponent(verPerfilBtn)
                     .addComponent(anhadirCestaBtn)
-                    .addComponent(cantidadSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cantidadSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(anhadirProductoBtn))
                 .addContainerGap())
         );
 
@@ -206,9 +227,14 @@ public class VPrincipal extends javax.swing.JFrame {
         this.fa.verVentanaCesta();
     }//GEN-LAST:event_VerCestaBtnActionPerformed
 
+    private void anhadirProductoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anhadirProductoBtnActionPerformed
+        fa.verVentanaAnhadirProductos();
+    }//GEN-LAST:event_anhadirProductoBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton VerCestaBtn;
     private javax.swing.JButton anhadirCestaBtn;
+    private javax.swing.JButton anhadirProductoBtn;
     private javax.swing.JSpinner cantidadSpinner;
     private javax.swing.JButton exitBtn;
     private javax.swing.JScrollPane jScrollPane1;

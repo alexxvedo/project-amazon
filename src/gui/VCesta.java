@@ -15,6 +15,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 public class VCesta extends javax.swing.JDialog {
+    
+    
 
     private Cliente cliente;
     private aplicacion.FachadaAplicacion fa;
@@ -24,6 +26,7 @@ public class VCesta extends javax.swing.JDialog {
     private Producto selectedProd;
     private MetodoPago selectedMetodoPago;
     private Direccion selectedDir;
+    private Distribuidor distribuidorActual;
 
     private float totalPagar = 0f;
 
@@ -38,6 +41,7 @@ public class VCesta extends javax.swing.JDialog {
         anhadirProductos();
         anhadirMetodosPago();
         anhadirDirecciones();
+        setDistribuidor();
         getTotal();
         customBehavior();
 
@@ -54,11 +58,20 @@ public class VCesta extends javax.swing.JDialog {
             this.totalPagar += key.getPrecio() * value;
 
         }
-
+        totalPagar += distribuidorActual.getCosteEnvio();
+        
         this.totalPagarLabel.setText("" + this.totalPagar);
 
     }
 
+    private void setDistribuidor(){
+        ArrayList<Distribuidor> distribuidores = fa.obtenerDistribuidores();
+
+        Random random = new Random();
+        int randomNumber = random.nextInt(distribuidores.size());
+        distribuidorActual = distribuidores.get(randomNumber);
+    }
+    
     private void anhadirProductos() {
 
         ModeloTablaProductosCesta m = (ModeloTablaProductosCesta) this.tablaProductosCesta.getModel();
@@ -318,12 +331,9 @@ public class VCesta extends javax.swing.JDialog {
             return;
         }
 
-        ArrayList<Distribuidor> distribuidores = fa.obtenerDistribuidores();
+        
 
-        Random random = new Random();
-        int randomNumber = random.nextInt(distribuidores.size());
-
-        int res = fa.crearPedido(this.cliente, this.selectedMetodoPago, this.selectedDir, distribuidores.get(randomNumber), productos, false);
+        int res = fa.crearPedido(this.cliente, this.selectedMetodoPago, this.selectedDir, distribuidorActual, productos, false);
 
         if (res == 1) {
 

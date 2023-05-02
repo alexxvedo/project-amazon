@@ -1,11 +1,13 @@
 package baseDatos;
 
+import aplicacion.Almacen;
 import aplicacion.Cliente;
 import aplicacion.Direccion;
 import aplicacion.Distribuidor;
 import aplicacion.MetodoPago;
 import aplicacion.Pedido;
 import aplicacion.Producto;
+import aplicacion.EmpresaVendedora;
 import java.awt.Color;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -24,6 +26,8 @@ public class FachadaBaseDatos {
     private DAODireccion daoDireccion;
     private DAOMetodoPago daoMetodoPago;
     private DAODistribuidor daoDistribuidor;
+    private DAOAlmacen daoAlmacen;
+    private DAOEmpresasVendedoras daoEmpresasVendedoras;
     
     public FachadaBaseDatos(aplicacion.FachadaAplicacion fa) {
 
@@ -51,6 +55,8 @@ public class FachadaBaseDatos {
             daoDireccion = new DAODireccion(conexion, fa);
             daoMetodoPago = new DAOMetodoPago(conexion, fa);
             daoDistribuidor = new DAODistribuidor(conexion, fa);
+            daoAlmacen = new DAOAlmacen(conexion, fa);
+            daoEmpresasVendedoras = new DAOEmpresasVendedoras(conexion, fa);
 
         } catch (FileNotFoundException f) {
 
@@ -81,6 +87,10 @@ public class FachadaBaseDatos {
 
     public int crearMetodoPago(MetodoPago m) {
         return daoMetodoPago.crearMetodoPago(m);
+    }
+    
+    public int crearProducto(EmpresaVendedora selectedEmpresa, Almacen selectedAlmacen,String nombre,String descripcion,float precio, int existencias){
+        return daoProductos.crearProducto(selectedEmpresa, selectedAlmacen, nombre, descripcion, precio, existencias);
     }
 
     public int crearPedido(Cliente c, MetodoPago m, Direccion d, Distribuidor dist, HashMap<Producto, Integer> p, boolean f) {
@@ -129,6 +139,14 @@ public class FachadaBaseDatos {
     
     public ArrayList<Distribuidor> obtenerDistribuidores(){
         return daoDistribuidor.obtenerDistribuidores();
+    }
+    
+    public ArrayList<Almacen> obtenerAlmacenes(){
+        return daoAlmacen.obtenerAlmacenes();
+    }
+    
+    public ArrayList<EmpresaVendedora> obtenerEmpresasVendedoras(){
+        return daoEmpresasVendedoras.obtenerEmpresasVendedoras();
     }
 
 }

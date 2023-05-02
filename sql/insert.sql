@@ -3,13 +3,15 @@ insert into empresasVendedoras values
 	(default, 'Apple', '10-07-2022'),
 	(default, 'Samsung', '12-10-2021'),
 	(default, 'Dyson', '03-01-2020'),
-	(default, 'Lacoste', '04-15-2021'),
+	(default, 'Lacoste', '04-15-2020'),
 	(default, 'Balay', '02-23-2019'),
 	(default, 'EA', '08-21-2018'),
 	(default, 'Adidas', '10-09-2016'),
 	(default, 'Nike', '01-20-2014'),
 	(default, 'Cecotec', '07-18-2017'),
 	(default, 'Amazon', '01-01-2000');
+
+/*set datestyle to "ISO, MDY";*/
 
 insert into almacenes values
 	(default, 'Calle Portugal', 1, 'Madrid', 28001),
@@ -53,6 +55,7 @@ insert into productos values
 	(default, 11, 1, 'Amazon Prime', 'El prime de toda la vida', 50.00, 1000);
 
 insert into clientes values
+	(default, 'admin', 691669052, '01-21-1994', true, 'admin', 'admin'),
 	(default, 'Jose Perez Jimenez', 691669052, '01-21-1999', false, 'jpj@gmail.com', 'jpj'),
 	(default, 'Maria Garcia Lopez', 691669053, '04-19-2015', false, 'mgl@gmail.com', 'mgl'),
 	(default, 'Juan Rodriguez Sanchez', 691669054, '07-17-2010', false, 'jrs@gmail.com', 'jrs'),

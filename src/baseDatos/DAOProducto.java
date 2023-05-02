@@ -81,5 +81,52 @@ public class DAOProducto extends AbstractDAO {
         return productos;
 
     }
+    
+    public int crearProducto(EmpresaVendedora selectedEmpresa, Almacen selectedAlmacen, String nombre, String descripcion, float precio, int existencias){
+        
+        Connection con;
+        PreparedStatement stmProductos = null;
+        
+        int res = 0;
+        
+        con = this.getConexion();
+        try {
+            
+            stmProductos = con.prepareStatement("insert into productos values (default, ?, ?, ?, ?, ?, ?)");
+            stmProductos.setInt(1, selectedEmpresa.getId());
+            stmProductos.setInt(2, selectedAlmacen.getId());
+            stmProductos.setString(3, nombre);
+            stmProductos.setString(4, descripcion);
+            stmProductos.setFloat(5, precio);
+            stmProductos.setInt(6, existencias);
+            stmProductos.executeUpdate();
+            
+            res = 1;
+
+            
+            
+        }catch (Exception e) {
+
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage(), Color.RED);
+            res = 0;
+
+        } finally {
+
+            try {
+
+                stmProductos.close();
+
+            } catch (SQLException e) {
+
+                System.out.println("Imposible cerrar cursores");
+                res = 0;
+
+            }
+        }
+        
+
+        return res;
+    }
 
 }

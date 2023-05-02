@@ -14,6 +14,8 @@ public class FachadaAplicacion {
     GestionDirecciones cd;
     GestionMetodosPago cmp;
     GestionDistribuidor cdis;
+    GestionAlmacenes calm;
+    GestionEmpresasVendedoras cemp;
 
     public FachadaAplicacion() {
         fgui = new gui.FachadaGui(this);
@@ -23,6 +25,8 @@ public class FachadaAplicacion {
         cpe = new GestionPedidos(fgui, fbd);
         cd = new GestionDirecciones(fgui, fbd);
         cmp = new GestionMetodosPago(fgui, fbd);
+        calm = new GestionAlmacenes(fgui, fbd);
+        cemp = new GestionEmpresasVendedoras(fgui, fbd);
         cdis = new GestionDistribuidor(fbd);
     }
 
@@ -31,13 +35,18 @@ public class FachadaAplicacion {
         FachadaAplicacion fa;
 
         fa = new FachadaAplicacion();
+        
         fa.iniciaInterfazUsuario();
 
     }
 
     public void iniciaInterfazUsuario() {
         fgui.iniciaVista();
+        System.out.println(cc.getCliente().toString());
+        fgui.verVentanaPrincipal(cc.getCliente());
     }
+    
+    
 
     public void insertarProductoCesta(Producto p, int cantidad, boolean isUpdate) {
         this.cpe.insertarProducto(p, cantidad, isUpdate);
@@ -53,6 +62,10 @@ public class FachadaAplicacion {
 
     public Boolean comprobarAutentificacion(String nombre, String password) {
         return cc.comprobarAutentificacion(nombre, password);
+    }
+    
+    public int crearProducto(EmpresaVendedora selectedEmpresa, Almacen selectedAlmacen, String nombre, String descripcion, float precio, int existencias){
+        return cp.crearProducto(selectedEmpresa, selectedAlmacen, nombre, descripcion, precio, existencias);
     }
 
     public int crearDireccion(Direccion d) {
@@ -95,6 +108,10 @@ public class FachadaAplicacion {
         return cp.obtenerProductos(nombre);
     }
     
+    public Cliente obtenerCliente(){
+        return cc.getCliente();
+    }
+    
     public HashMap<Producto, Integer> obtenerCesta() {
         return cpe.getCestaProductos();
     }
@@ -114,10 +131,22 @@ public class FachadaAplicacion {
     public ArrayList<Distribuidor> obtenerDistribuidores() {
         return cdis.obtenerDistribuidores();
     }
+    
+    public ArrayList<Almacen> obtenerAlmacenes(){
+        return calm.obtenerAlmacenes();
+    }
+    
+    public ArrayList<EmpresaVendedora> obtenerEmpresasVendedoras(){
+        return cemp.obtenerEmpresasVendedoras();
+    }
+    
+    
 
     public void verPerfil() {
         cc.verVentanaPerfil(this.cc.getCliente());
     }
+    
+    
 
     public void verMetodosPago() {
         cmp.verVentaMetodosPago(this.cc.getCliente());
@@ -133,6 +162,10 @@ public class FachadaAplicacion {
 
     public void verVentanaCesta() {
         fgui.verVentanaCesta(this.cc.getCliente());
+    }
+    
+    public void verVentanaAnhadirProductos(){
+        fgui.verVentanaAnhadirProducto();
     }
 
 }

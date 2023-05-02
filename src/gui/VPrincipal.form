@@ -44,7 +44,9 @@
                               <Component id="VerCestaBtn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="verPerfilBtn" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="137" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="anhadirProductoBtn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="cantidadSpinner" min="-2" pref="101" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="anhadirCestaBtn" min="-2" max="-2" attributes="0"/>
@@ -80,6 +82,7 @@
                   <Component id="verPerfilBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="anhadirCestaBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cantidadSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="anhadirProductoBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -157,6 +160,14 @@
       </Events>
     </Component>
     <Component class="javax.swing.JSpinner" name="cantidadSpinner">
+    </Component>
+    <Component class="javax.swing.JButton" name="anhadirProductoBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="A&#xf1;adir producto"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="anhadirProductoBtnActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

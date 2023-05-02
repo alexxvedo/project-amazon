@@ -24,6 +24,7 @@ public class GestionClientes {
 
     public Boolean comprobarAutentificacion(String email, String password) {
         this.cliente = fbd.validarUsuario(email, password);
+        System.out.println("Se seteo el cliente");
         return this.cliente != null;
     }
 
