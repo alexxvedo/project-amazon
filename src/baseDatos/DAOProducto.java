@@ -81,17 +81,17 @@ public class DAOProducto extends AbstractDAO {
         return productos;
 
     }
-    
-    public int crearProducto(EmpresaVendedora selectedEmpresa, Almacen selectedAlmacen, String nombre, String descripcion, float precio, int existencias){
-        
+
+    public int crearProducto(EmpresaVendedora selectedEmpresa, Almacen selectedAlmacen, String nombre, String descripcion, float precio, int existencias) {
+
         Connection con;
         PreparedStatement stmProductos = null;
-        
+
         int res = 0;
-        
+
         con = this.getConexion();
         try {
-            
+
             stmProductos = con.prepareStatement("insert into productos values (default, ?, ?, ?, ?, ?, ?)");
             stmProductos.setInt(1, selectedEmpresa.getId());
             stmProductos.setInt(2, selectedAlmacen.getId());
@@ -100,12 +100,10 @@ public class DAOProducto extends AbstractDAO {
             stmProductos.setFloat(5, precio);
             stmProductos.setInt(6, existencias);
             stmProductos.executeUpdate();
-            
+
             res = 1;
 
-            
-            
-        }catch (Exception e) {
+        } catch (Exception e) {
 
             System.out.println(e.getMessage());
             this.getFachadaAplicacion().muestraExcepcion(e.getMessage(), Color.RED);
@@ -124,7 +122,6 @@ public class DAOProducto extends AbstractDAO {
 
             }
         }
-        
 
         return res;
     }

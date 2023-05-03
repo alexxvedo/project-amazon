@@ -17,8 +17,8 @@ public class GestionProductos {
     public ArrayList<Producto> obtenerProductos(String nombre) {
         return fbd.obtenerProductos(nombre);
     }
-    
-    public int crearProducto(EmpresaVendedora selectedEmpresa, Almacen selectedAlmacen, String nombre, String descripcion, float precio, int existencias){
+
+    public int crearProducto(EmpresaVendedora selectedEmpresa, Almacen selectedAlmacen, String nombre, String descripcion, float precio, int existencias) {
         return fbd.crearProducto(selectedEmpresa, selectedAlmacen, nombre, descripcion, precio, existencias);
     }
 

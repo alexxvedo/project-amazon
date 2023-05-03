@@ -123,7 +123,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Fecha de Nacimiento:"/>
+        <Property name="text" type="java.lang.String" value="Fecha de Nacimiento (yyyy-mm-dd):"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
@@ -136,9 +136,6 @@
     <Component class="javax.swing.JTextField" name="nombreInput">
     </Component>
     <Component class="javax.swing.JTextField" name="telefonoInput">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="telefonoInputActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="fechaInput">
       <Properties>

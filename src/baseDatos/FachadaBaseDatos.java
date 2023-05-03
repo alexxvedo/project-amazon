@@ -13,7 +13,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Properties;
 
@@ -29,7 +28,7 @@ public class FachadaBaseDatos {
     private DAODistribuidor daoDistribuidor;
     private DAOAlmacen daoAlmacen;
     private DAOEmpresasVendedoras daoEmpresasVendedoras;
-    
+
     public FachadaBaseDatos(aplicacion.FachadaAplicacion fa) {
 
         Properties configuracion = new Properties();
@@ -89,17 +88,17 @@ public class FachadaBaseDatos {
     public int crearMetodoPago(MetodoPago m) {
         return daoMetodoPago.crearMetodoPago(m);
     }
-    
-    public int crearProducto(EmpresaVendedora selectedEmpresa, Almacen selectedAlmacen,String nombre,String descripcion,float precio, int existencias){
+
+    public int crearProducto(EmpresaVendedora selectedEmpresa, Almacen selectedAlmacen, String nombre, String descripcion, float precio, int existencias) {
         return daoProductos.crearProducto(selectedEmpresa, selectedAlmacen, nombre, descripcion, precio, existencias);
     }
 
     public int crearPedido(Cliente c, MetodoPago m, Direccion d, Distribuidor dist, HashMap<Producto, Integer> p, boolean f) {
         return daoPedidos.crearPedido(c, m, d, dist, p, f);
     }
-    
-    public int crearCliente(String nombre, String email, String password, String fechaNacimiento, boolean prime, int telefono){
-        return daoClientes.crearCliente(nombre, email, password, fechaNacimiento, prime, telefono);
+
+    public int crearCliente(Cliente c) {
+        return daoClientes.crearCliente(c);
     }
 
     public int actualizarCliente(Cliente c) {
@@ -141,16 +140,16 @@ public class FachadaBaseDatos {
     public ArrayList<MetodoPago> obtenerMetodosPago(Cliente c) {
         return daoMetodoPago.obtenerMetodosPago(c);
     }
-    
-    public ArrayList<Distribuidor> obtenerDistribuidores(){
+
+    public ArrayList<Distribuidor> obtenerDistribuidores() {
         return daoDistribuidor.obtenerDistribuidores();
     }
-    
-    public ArrayList<Almacen> obtenerAlmacenes(){
+
+    public ArrayList<Almacen> obtenerAlmacenes() {
         return daoAlmacen.obtenerAlmacenes();
     }
-    
-    public ArrayList<EmpresaVendedora> obtenerEmpresasVendedoras(){
+
+    public ArrayList<EmpresaVendedora> obtenerEmpresasVendedoras() {
         return daoEmpresasVendedoras.obtenerEmpresasVendedoras();
     }
 

@@ -15,8 +15,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 public class VCesta extends javax.swing.JDialog {
-    
-    
 
     private Cliente cliente;
     private aplicacion.FachadaAplicacion fa;
@@ -58,24 +56,23 @@ public class VCesta extends javax.swing.JDialog {
             this.totalPagar += key.getPrecio() * value;
 
         }
-        
-        if (!cliente.isPrime()){
+
+        if (!cliente.isPrime()) {
             totalPagar += distribuidorActual.getCosteEnvio();
         }
-        
-        
+
         this.totalPagarLabel.setText("" + this.totalPagar);
 
     }
 
-    private void setDistribuidor(){
+    private void setDistribuidor() {
         ArrayList<Distribuidor> distribuidores = fa.obtenerDistribuidores();
 
         Random random = new Random();
         int randomNumber = random.nextInt(distribuidores.size());
         distribuidorActual = distribuidores.get(randomNumber);
     }
-    
+
     private void anhadirProductos() {
 
         ModeloTablaProductosCesta m = (ModeloTablaProductosCesta) this.tablaProductosCesta.getModel();
@@ -334,8 +331,6 @@ public class VCesta extends javax.swing.JDialog {
         if (productos.isEmpty() || this.selectedDir == null || this.selectedMetodoPago == null) {
             return;
         }
-
-        
 
         int res = fa.crearPedido(this.cliente, this.selectedMetodoPago, this.selectedDir, distribuidorActual, productos, false);
 

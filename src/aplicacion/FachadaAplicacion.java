@@ -2,7 +2,6 @@ package aplicacion;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 
 public class FachadaAplicacion {
@@ -36,7 +35,7 @@ public class FachadaAplicacion {
         FachadaAplicacion fa;
 
         fa = new FachadaAplicacion();
-        
+
         fa.iniciaInterfazUsuario();
 
     }
@@ -44,11 +43,10 @@ public class FachadaAplicacion {
     public void iniciaInterfazUsuario() {
         fgui.iniciaVista();
     }
-    
-    public void verVentanaPrincipal(){
+
+    public void verVentanaPrincipal() {
         fgui.verVentanaPrincipal(cc.getCliente());
     }
-    
 
     public void insertarProductoCesta(Producto p, int cantidad, boolean isUpdate) {
         this.cpe.insertarProducto(p, cantidad, isUpdate);
@@ -65,8 +63,8 @@ public class FachadaAplicacion {
     public Boolean comprobarAutentificacion(String nombre, String password) {
         return cc.comprobarAutentificacion(nombre, password);
     }
-    
-    public int crearProducto(EmpresaVendedora selectedEmpresa, Almacen selectedAlmacen, String nombre, String descripcion, float precio, int existencias){
+
+    public int crearProducto(EmpresaVendedora selectedEmpresa, Almacen selectedAlmacen, String nombre, String descripcion, float precio, int existencias) {
         return cp.crearProducto(selectedEmpresa, selectedAlmacen, nombre, descripcion, precio, existencias);
     }
 
@@ -81,9 +79,9 @@ public class FachadaAplicacion {
     public int crearPedido(Cliente c, MetodoPago m, Direccion d, Distribuidor dist, HashMap<Producto, Integer> p, boolean f) {
         return cpe.crearPedido(c, m, d, dist, p, f);
     }
-    
-    public int crearCliente(String nombre, String email, String password, String fechaNacimiento, boolean prime, int telefono){
-        return cc.crearCliente(nombre, email, password, fechaNacimiento, false, telefono);
+
+    public int crearCliente(Cliente c) {
+        return cc.crearCliente(c);
     }
 
     public int actualizarCliente(Cliente c) {
@@ -113,11 +111,11 @@ public class FachadaAplicacion {
     public ArrayList<Producto> obtenerProductos(String nombre) {
         return cp.obtenerProductos(nombre);
     }
-    
-    public Cliente obtenerCliente(){
+
+    public Cliente obtenerCliente() {
         return cc.getCliente();
     }
-    
+
     public HashMap<Producto, Integer> obtenerCesta() {
         return cpe.getCestaProductos();
     }
@@ -137,22 +135,18 @@ public class FachadaAplicacion {
     public ArrayList<Distribuidor> obtenerDistribuidores() {
         return cdis.obtenerDistribuidores();
     }
-    
-    public ArrayList<Almacen> obtenerAlmacenes(){
+
+    public ArrayList<Almacen> obtenerAlmacenes() {
         return calm.obtenerAlmacenes();
     }
-    
-    public ArrayList<EmpresaVendedora> obtenerEmpresasVendedoras(){
+
+    public ArrayList<EmpresaVendedora> obtenerEmpresasVendedoras() {
         return cemp.obtenerEmpresasVendedoras();
     }
-    
-    
 
     public void verPerfil() {
         cc.verVentanaPerfil(this.cc.getCliente());
     }
-    
-    
 
     public void verMetodosPago() {
         cmp.verVentaMetodosPago(this.cc.getCliente());
@@ -169,8 +163,8 @@ public class FachadaAplicacion {
     public void verVentanaCesta() {
         fgui.verVentanaCesta(this.cc.getCliente());
     }
-    
-    public void verVentanaAnhadirProductos(){
+
+    public void verVentanaAnhadirProductos() {
         fgui.verVentanaAnhadirProducto();
     }
 

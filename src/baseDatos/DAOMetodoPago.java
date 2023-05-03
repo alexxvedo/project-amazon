@@ -77,7 +77,7 @@ public class DAOMetodoPago extends AbstractDAO {
             stmMetodoPago.setBoolean(3, m.isActiva());
             stmMetodoPago.setBoolean(4, m.isPreferida());
             stmMetodoPago.executeUpdate();
-            
+
             res = 1;
 
         } catch (Exception e) {

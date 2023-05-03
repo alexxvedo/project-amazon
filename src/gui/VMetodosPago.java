@@ -46,7 +46,7 @@ public class VMetodosPago extends javax.swing.JDialog {
                     int row = tablaMetodosPago.getSelectedRow();
                     MetodoPago m = ((ModeloTablaMetodosPago) tablaMetodosPago.getModel()).obtenerMetodoPago(row);
                     oldM = m;
-                    
+
                     numTarText.setText("" + m.getNumeroTarjeta());
                     preferidaBtn.setSelected(m.isPreferida());
                     activaBtn.setSelected(m.isActiva());

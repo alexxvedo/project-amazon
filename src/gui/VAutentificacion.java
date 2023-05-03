@@ -154,28 +154,26 @@ public class VAutentificacion extends javax.swing.JDialog {
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
 
         String hashPassword;
-        try{
+        try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(textoPassword.getText().getBytes());
             byte[] bytes = md.digest();
             StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < bytes.length; i++){
+            for (int i = 0; i < bytes.length; i++) {
                 sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
             }
             hashPassword = sb.toString();
-        }catch (NoSuchAlgorithmException e) {
+        } catch (NoSuchAlgorithmException e) {
             hashPassword = "";
             e.printStackTrace();
-            
+
         }
-              
+
         etiquetaFallo.setVisible(false);
-        
-        
+
         if (fa.comprobarAutentificacion(textoCliente.getText(), hashPassword)) {
             this.dispose();
             fa.verVentanaPrincipal();
-            
 
         } else {
 
@@ -199,8 +197,7 @@ public class VAutentificacion extends javax.swing.JDialog {
         VRegistro vreg = new VRegistro(fa);
         vreg.setVisible(true);
         this.dispose();
-        
-        
+
     }//GEN-LAST:event_registrarseBtnMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

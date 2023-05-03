@@ -13,7 +13,6 @@ import javax.swing.event.ListSelectionListener;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author alumnogreibd
@@ -29,8 +28,7 @@ public class VAnhadirProducto extends javax.swing.JDialog {
     private int existencias;
     private float precio;
     private String descripcion;
-    
-    
+
     public VAnhadirProducto(java.awt.Frame parent, boolean modal, aplicacion.FachadaAplicacion fa) {
         super(parent, modal);
         this.fa = fa;
@@ -39,7 +37,7 @@ public class VAnhadirProducto extends javax.swing.JDialog {
         anhadirEmpresasVendedoras();
         customBehavior();
     }
-    
+
     private void anhadirAlmacenes() {
 
         ModeloTablaAlmacen m = (ModeloTablaAlmacen) this.tablaAlmacenes.getModel();
@@ -50,26 +48,22 @@ public class VAnhadirProducto extends javax.swing.JDialog {
             this.tablaAlmacenes.setRowSelectionInterval(0, 0);
         }
 
-
     }
-    
-    private void anhadirEmpresasVendedoras(){
+
+    private void anhadirEmpresasVendedoras() {
         ModeloTablaEmpresas m = (ModeloTablaEmpresas) this.tablaEmpresas.getModel();
         System.out.println("Empresas");
         m.setFilas(fa.obtenerEmpresasVendedoras());
-        
 
         if (m.getRowCount() > 0) {
             this.tablaEmpresas.setRowSelectionInterval(0, 0);
         }
     }
-    
+
     private void customBehavior() {
 
         this.tablaEmpresas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         this.tablaAlmacenes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
-       
 
         this.tablaEmpresas.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
@@ -77,8 +71,6 @@ public class VAnhadirProducto extends javax.swing.JDialog {
             public void valueChanged(ListSelectionEvent e) {
 
                 isEmpresaEditing = tablaEmpresas.getSelectedRows().length != 0;
-
-                
 
                 if (isEmpresaEditing) {
 
@@ -265,20 +257,19 @@ public class VAnhadirProducto extends javax.swing.JDialog {
     private void AceptarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarBtnActionPerformed
         this.nombre = this.nombreInput.getText();
         this.descripcion = this.descripcionArea.getText();
-        this.precio = (float)((int) this.precioSpinner.getValue());
-        
+        this.precio = (float) ((int) this.precioSpinner.getValue());
+
         this.existencias = (int) this.existenciasSpinner.getValue();
-       
-        if(selectedEmpresa != null && selectedAlmacen != null && nombre != null && descripcion != null && precio != 0f && existencias != 0){
+
+        if (selectedEmpresa != null && selectedAlmacen != null && nombre != null && descripcion != null && precio != 0f && existencias != 0) {
             System.out.println("Metiendo el producto");
             int res = fa.crearProducto(selectedEmpresa, selectedAlmacen, nombre, descripcion, precio, existencias);
-            if(res == 1){
+            if (res == 1) {
                 this.fa.muestraExcepcion("Producto creado correctamente", Color.GREEN);
                 this.dispose();
             }
         }
     }//GEN-LAST:event_AceptarBtnActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AceptarBtn;

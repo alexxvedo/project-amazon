@@ -113,7 +113,7 @@ public class ModeloTablaProductosCesta extends AbstractTableModel {
 
         this.productos = new ArrayList<>();
         this.cantidades = new ArrayList<>();
-        
+
         for (Map.Entry<Producto, Integer> set : productos.entrySet()) {
             Producto key = set.getKey();
             Integer value = set.getValue();

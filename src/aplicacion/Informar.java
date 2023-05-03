@@ -31,5 +31,5 @@ public class Informar {
     public String getDescripcion() {
         return descripcion;
     }
-    
+
 }

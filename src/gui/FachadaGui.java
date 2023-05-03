@@ -17,12 +17,12 @@ public class FachadaGui {
 
         VAutentificacion va;
 
-        va = new VAutentificacion(true, fa);
+        va  = new VAutentificacion(true, fa);
         va.setVisible(true);
 
     }
-    
-    public void verVentanaPrincipal(Cliente cliente){
+
+    public void verVentanaPrincipal(Cliente cliente) {
         this.vp = new VPrincipal(fa, cliente);
         vp.setVisible(true);
     }
@@ -61,8 +61,8 @@ public class FachadaGui {
         vmp.setVisible(true);
 
     }
-    
-    public void verVentanaAnhadirProducto(){
+
+    public void verVentanaAnhadirProducto() {
         VAnhadirProducto vanha = new VAnhadirProducto(vp, true, fa);
         vanha.setVisible(true);
     }

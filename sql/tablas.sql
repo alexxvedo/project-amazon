@@ -30,7 +30,7 @@ create table clientes (
 	telefono numeric(9, 0) not null,
 	fechaNacimiento date not null,
 	prime boolean not null default false,
-	email varchar(50) not null,
+	email varchar(50) not null unique,
 	contrasena varchar(50) not null
 );
 

@@ -189,7 +189,6 @@ public class VObtenerPrime extends javax.swing.JDialog {
 
         HashMap<Producto, Integer> productos = new HashMap<>();
         productos.put(fa.obtenerProductos("Amazon Prime").get(0), 1);
-        
 
         int res = this.fa.crearPedido(cliente, m, null, null, productos, true);
 

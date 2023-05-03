@@ -2,6 +2,7 @@ package gui;
 
 import aplicacion.Cliente;
 import java.awt.Color;
+import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -305,7 +306,16 @@ public class VCliente extends javax.swing.JDialog {
 
             if (this.passwordText.getPassword().length != 0) {
 
-                password = this.passwordText.getPassword().toString();
+                MessageDigest md = MessageDigest.getInstance("MD5");
+                md.update(String.valueOf(this.passwordText.getPassword()).getBytes());
+                byte[] bytes = md.digest();
+                StringBuilder sb = new StringBuilder();
+
+                for (int i = 0; i < bytes.length; i++) {
+                    sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+                }
+
+                password = sb.toString();
 
             }
 

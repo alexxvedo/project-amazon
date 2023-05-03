@@ -1,4 +1,5 @@
 package gui;
+
 import aplicacion.EmpresaVendedora;
 import javax.swing.table.AbstractTableModel;
 
@@ -7,7 +8,8 @@ import javax.swing.table.AbstractTableModel;
  * @author alumnogreibd
  */
 public class ModeloTablaEmpresas extends AbstractTableModel {
-     private java.util.List<EmpresaVendedora> empresas;
+
+    private java.util.List<EmpresaVendedora> empresas;
 
     public ModeloTablaEmpresas() {
         this.empresas = new java.util.ArrayList();
@@ -82,7 +84,7 @@ public class ModeloTablaEmpresas extends AbstractTableModel {
             case 2:
                 resultado = empresas.get(row).getFechaAsociacion();
                 break;
-         
+
         }
 
         return resultado;

@@ -19,7 +19,7 @@ public class VPrincipal extends javax.swing.JFrame {
     public VPrincipal(aplicacion.FachadaAplicacion fa, Cliente cliente) {
         this.fa = fa;
         this.clienteActual = cliente;
-        
+
         initComponents();
         customBehavior();
     }
@@ -42,10 +42,10 @@ public class VPrincipal extends javax.swing.JFrame {
 
         anhadirCestaBtn.setVisible(false);
         cantidadSpinner.setVisible(false);
-        
-        if(clienteActual.getEmail().equals("admin")){
+
+        if (clienteActual.getEmail().equals("admin")) {
             anhadirProductoBtn.setVisible(true);
-        }else {
+        } else {
             anhadirProductoBtn.setVisible(false);
         }
 

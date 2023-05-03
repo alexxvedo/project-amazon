@@ -13,6 +13,7 @@ import java.util.ArrayList;
  * @author alumnogreibd
  */
 public class GestionEmpresasVendedoras {
+
     FachadaGui fgui;
     FachadaBaseDatos fbd;
 
@@ -20,7 +21,6 @@ public class GestionEmpresasVendedoras {
         this.fgui = fgui;
         this.fbd = fbd;
     }
-
 
     public ArrayList<EmpresaVendedora> obtenerEmpresasVendedoras() {
         return fbd.obtenerEmpresasVendedoras();

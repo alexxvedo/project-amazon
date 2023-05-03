@@ -3,12 +3,6 @@ package baseDatos;
 import aplicacion.Cliente;
 import java.awt.Color;
 import java.sql.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 
 public class DAOCliente extends AbstractDAO {
 
@@ -42,7 +36,7 @@ public class DAOCliente extends AbstractDAO {
         } catch (SQLException e) {
 
             System.out.println(e.getMessage());
-            this.getFachadaAplicacion().muestraExcepcion(e.getMessage(), Color.RED);
+            this.getFachadaAplicacion().muestraExcepcion("Error de BBDD", Color.RED);
 
         } finally {
 
@@ -61,42 +55,43 @@ public class DAOCliente extends AbstractDAO {
         return resultado;
 
     }
-    
-    public int crearCliente(String nombre, String email, String password, String fechaNacimiento, boolean prime, int telefono){
+
+    public int crearCliente(Cliente c) {
+
         int res = 0;
         Connection con;
         PreparedStatement stmCliente = null;
 
         con = super.getConexion();
-        
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        Date parsed = null;
-        java.sql.Date fecha = null;
-        try {
-            parsed = format.parse(fechaNacimiento);
-             fecha = new java.sql.Date(parsed.getTime());
-        } catch (ParseException ex) {
-            Logger.getLogger(DAOCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
 
         try {
 
             stmCliente = con.prepareStatement("insert into clientes values (default, ?, ?, ?, ?, ?, ?)");
-            stmCliente.setString(1, nombre);
-            stmCliente.setInt(2, telefono);
-            stmCliente.setDate(3, fecha);
-            stmCliente.setBoolean(4, prime);
-            stmCliente.setString(5, email);
-            stmCliente.setString(6, password);
+            stmCliente.setString(1, c.getNombre());
+            stmCliente.setInt(2, c.getTelefono());
+            stmCliente.setDate(3, java.sql.Date.valueOf(c.getFechaNacimientoString()));
+            stmCliente.setBoolean(4, c.isPrime());
+            stmCliente.setString(5, c.getEmail());
+            stmCliente.setString(6, c.getContrasena());
             stmCliente.executeUpdate();
 
             res = 1;
 
+        } catch (SQLException e) {
+
+            String text = e.getMessage();
+
+            if (Integer.parseInt(e.getSQLState()) == 23505) {
+                text = "Error email duplicado";
+            }
+
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(text, Color.RED);
+
         } catch (Exception e) {
 
             System.out.println(e.getMessage());
-            this.getFachadaAplicacion().muestraExcepcion(e.getMessage(), Color.RED);
+            this.getFachadaAplicacion().muestraExcepcion("Error de BBDD", Color.RED);
             res = 0;
 
         } finally {
@@ -110,6 +105,7 @@ public class DAOCliente extends AbstractDAO {
                 System.out.println("Imposible cerrar cursores");
 
             }
+
         }
 
         return res;
@@ -140,7 +136,7 @@ public class DAOCliente extends AbstractDAO {
         } catch (Exception e) {
 
             System.out.println(e.getMessage());
-            this.getFachadaAplicacion().muestraExcepcion(e.getMessage(), Color.RED);
+            this.getFachadaAplicacion().muestraExcepcion("Error de BBDD", Color.RED);
             res = 0;
 
         } finally {
@@ -179,7 +175,7 @@ public class DAOCliente extends AbstractDAO {
         } catch (SQLException e) {
 
             System.out.println(e.getMessage());
-            this.getFachadaAplicacion().muestraExcepcion(e.getMessage(), Color.RED);
+            this.getFachadaAplicacion().muestraExcepcion("Error de BBDD", Color.RED);
             res = 0;
 
         } finally {

@@ -1,6 +1,5 @@
 package gui;
 
-
 import aplicacion.Almacen;
 import javax.swing.table.AbstractTableModel;
 
@@ -99,7 +98,7 @@ public class ModeloTablaAlmacen extends AbstractTableModel {
             case 4:
                 resultado = almacenes.get(row).getCodigoPostal();
                 break;
-            
+
         }
 
         return resultado;
