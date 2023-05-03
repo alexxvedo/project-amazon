@@ -36,6 +36,8 @@ public class VAutentificacion extends javax.swing.JDialog {
         btnCancelar = new javax.swing.JButton();
         etiquetaFallo = new javax.swing.JLabel();
         textoPassword = new javax.swing.JPasswordField();
+        jLabel1 = new javax.swing.JLabel();
+        registrarseBtn = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -81,6 +83,17 @@ public class VAutentificacion extends javax.swing.JDialog {
             }
         });
 
+        jLabel1.setText("¿Todavía no tienes cuenta?");
+
+        registrarseBtn.setForeground(new java.awt.Color(51, 51, 255));
+        registrarseBtn.setText("Registrate!");
+        registrarseBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        registrarseBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                registrarseBtnMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -88,19 +101,27 @@ public class VAutentificacion extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(etiquetaFallo)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnAceptar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnCancelar))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(registrarseBtn)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(passwordLabel)
                             .addComponent(emailLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
-                            .addComponent(etiquetaFallo)
-                            .addComponent(textoPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnAceptar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCancelar)))
+                            .addComponent(textoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                            .addComponent(textoPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -115,12 +136,16 @@ public class VAutentificacion extends javax.swing.JDialog {
                     .addComponent(passwordLabel)
                     .addComponent(textoPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(registrarseBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(etiquetaFallo)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptar)
                     .addComponent(btnCancelar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(16, 16, 16))
         );
 
         pack();
@@ -143,15 +168,14 @@ public class VAutentificacion extends javax.swing.JDialog {
             e.printStackTrace();
             
         }
-        System.out.println(hashPassword);
-        
-        
+              
         etiquetaFallo.setVisible(false);
         
         
         if (fa.comprobarAutentificacion(textoCliente.getText(), hashPassword)) {
-
             this.dispose();
+            fa.verVentanaPrincipal();
+            
 
         } else {
 
@@ -171,13 +195,23 @@ public class VAutentificacion extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_textoPasswordKeyReleased
 
+    private void registrarseBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registrarseBtnMouseClicked
+        VRegistro vreg = new VRegistro(fa);
+        vreg.setVisible(true);
+        this.dispose();
+        
+        
+    }//GEN-LAST:event_registrarseBtnMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JLabel etiquetaFallo;
     private javax.swing.JDialog jDialog1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel passwordLabel;
+    private javax.swing.JLabel registrarseBtn;
     private javax.swing.JTextField textoCliente;
     private javax.swing.JPasswordField textoPassword;
     // End of variables declaration//GEN-END:variables

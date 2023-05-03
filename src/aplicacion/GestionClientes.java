@@ -3,6 +3,7 @@ package aplicacion;
 import baseDatos.FachadaBaseDatos;
 import gui.FachadaGui;
 
+
 public class GestionClientes {
 
     FachadaGui fgui;
@@ -27,6 +28,10 @@ public class GestionClientes {
         System.out.println("Se seteo el cliente");
         return this.cliente != null;
     }
+    
+    public int crearCliente(String nombre, String email, String password, String fechaNacimiento, boolean prime, int telefono){
+        return fbd.crearCliente(nombre, email, password, fechaNacimiento, prime, telefono);
+    }
 
     public int actualizarCliente(Cliente c) {
         int res = fbd.actualizarCliente(c);
@@ -47,5 +52,6 @@ public class GestionClientes {
     public Cliente getCliente() {
         return cliente;
     }
+    
 
 }

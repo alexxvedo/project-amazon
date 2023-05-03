@@ -7,6 +7,7 @@
             <file>file:/home/alumnogreibd/Documentos/project-amazon/src/aplicacion/Producto.java</file>
             <file>file:/home/alumnogreibd/Documentos/project-amazon/src/gui/FachadaGui.java</file>
             <file>file:/home/alumnogreibd/Documentos/project-amazon/src/gui/VObtenerPrime.java</file>
+            <file>file:/home/alumnogreibd/Documentos/project-amazon/src/baseDatos/DAOAlmacen.java</file>
             <file>file:/home/alumnogreibd/Documentos/project-amazon/src/aplicacion/FachadaAplicacion.java</file>
             <file>file:/home/alumnogreibd/Documentos/project-amazon/src/baseDatos/FachadaBaseDatos.java</file>
             <file>file:/home/alumnogreibd/Documentos/project-amazon/src/gui/ModeloTablaMetodosPago.java</file>
@@ -17,6 +18,7 @@
             <file>file:/home/alumnogreibd/Documentos/project-amazon/src/aplicacion/GestionPedidos.java</file>
             <file>file:/home/alumnogreibd/Documentos/project-amazon/src/baseDatos/DAOPedido.java</file>
             <file>file:/home/alumnogreibd/Documentos/project-amazon/src/aplicacion/GestionProductos.java</file>
+            <file>file:/home/alumnogreibd/Documentos/project-amazon/src/gui/VRegistro.java</file>
             <file>file:/home/alumnogreibd/Documentos/project-amazon/src/aplicacion/EmpresaVendedora.java</file>
             <file>file:/home/alumnogreibd/Documentos/project-amazon/src/baseDatos/DAOCliente.java</file>
             <file>file:/home/alumnogreibd/Documentos/project-amazon/src/aplicacion/GestionAlmacenes.java</file>

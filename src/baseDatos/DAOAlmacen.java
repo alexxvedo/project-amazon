@@ -42,7 +42,7 @@ public class DAOAlmacen extends AbstractDAO{
                 almacenes.add(almacen);
 
             }
-            System.out.println(almacenes.toString());
+            
 
         } catch (SQLException e) {
 

@@ -35,6 +35,9 @@ public class DAOPedido extends AbstractDAO {
         con = this.getConexion();
 
         try {
+            
+            con.setAutoCommit(false);
+            con.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
 
             stmPedidos = con.prepareStatement("select * from pedidos where idCliente = ?");
             stmPedidos.setInt(1, c.getId());
@@ -76,6 +79,10 @@ public class DAOPedido extends AbstractDAO {
                 pedidos.add(pedido);
 
             }
+            
+            con.commit();
+            con.setAutoCommit(true);
+            con.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
 
         } catch (SQLException e) {
 

@@ -2,6 +2,7 @@ package aplicacion;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 public class FachadaAplicacion {
@@ -42,10 +43,11 @@ public class FachadaAplicacion {
 
     public void iniciaInterfazUsuario() {
         fgui.iniciaVista();
-        System.out.println(cc.getCliente().toString());
-        fgui.verVentanaPrincipal(cc.getCliente());
     }
     
+    public void verVentanaPrincipal(){
+        fgui.verVentanaPrincipal(cc.getCliente());
+    }
     
 
     public void insertarProductoCesta(Producto p, int cantidad, boolean isUpdate) {
@@ -78,6 +80,10 @@ public class FachadaAplicacion {
 
     public int crearPedido(Cliente c, MetodoPago m, Direccion d, Distribuidor dist, HashMap<Producto, Integer> p, boolean f) {
         return cpe.crearPedido(c, m, d, dist, p, f);
+    }
+    
+    public int crearCliente(String nombre, String email, String password, String fechaNacimiento, boolean prime, int telefono){
+        return cc.crearCliente(nombre, email, password, fechaNacimiento, false, telefono);
     }
 
     public int actualizarCliente(Cliente c) {

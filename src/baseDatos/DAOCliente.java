@@ -3,6 +3,12 @@ package baseDatos;
 import aplicacion.Cliente;
 import java.awt.Color;
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 public class DAOCliente extends AbstractDAO {
 
@@ -54,6 +60,59 @@ public class DAOCliente extends AbstractDAO {
 
         return resultado;
 
+    }
+    
+    public int crearCliente(String nombre, String email, String password, String fechaNacimiento, boolean prime, int telefono){
+        int res = 0;
+        Connection con;
+        PreparedStatement stmCliente = null;
+
+        con = super.getConexion();
+        
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date parsed = null;
+        java.sql.Date fecha = null;
+        try {
+            parsed = format.parse(fechaNacimiento);
+             fecha = new java.sql.Date(parsed.getTime());
+        } catch (ParseException ex) {
+            Logger.getLogger(DAOCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+
+        try {
+
+            stmCliente = con.prepareStatement("insert into clientes values (default, ?, ?, ?, ?, ?, ?)");
+            stmCliente.setString(1, nombre);
+            stmCliente.setInt(2, telefono);
+            stmCliente.setDate(3, fecha);
+            stmCliente.setBoolean(4, prime);
+            stmCliente.setString(5, email);
+            stmCliente.setString(6, password);
+            stmCliente.executeUpdate();
+
+            res = 1;
+
+        } catch (Exception e) {
+
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage(), Color.RED);
+            res = 0;
+
+        } finally {
+
+            try {
+
+                stmCliente.close();
+
+            } catch (SQLException e) {
+
+                System.out.println("Imposible cerrar cursores");
+
+            }
+        }
+
+        return res;
     }
 
     public int actualizarCliente(Cliente c) {

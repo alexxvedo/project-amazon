@@ -29,7 +29,7 @@ public class DAOEmpresasVendedoras extends AbstractDAO{
         ResultSet rsEmpresaVendedora;
 
         con = this.getConexion();
-        System.out.println("Pedir empresa");
+        
 
         try {
 

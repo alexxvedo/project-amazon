@@ -13,6 +13,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Properties;
 
@@ -95,6 +96,10 @@ public class FachadaBaseDatos {
 
     public int crearPedido(Cliente c, MetodoPago m, Direccion d, Distribuidor dist, HashMap<Producto, Integer> p, boolean f) {
         return daoPedidos.crearPedido(c, m, d, dist, p, f);
+    }
+    
+    public int crearCliente(String nombre, String email, String password, String fechaNacimiento, boolean prime, int telefono){
+        return daoClientes.crearCliente(nombre, email, password, fechaNacimiento, prime, telefono);
     }
 
     public int actualizarCliente(Cliente c) {
