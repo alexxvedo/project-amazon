@@ -44,9 +44,11 @@
                               <Component id="VerCestaBtn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="verPerfilBtn" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="186" max="32767" attributes="0"/>
                               <Component id="anhadirProductoBtn" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="eliminarAlmacenBtn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
                               <Component id="cantidadSpinner" min="-2" pref="101" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="anhadirCestaBtn" min="-2" max="-2" attributes="0"/>
@@ -74,7 +76,7 @@
                   <Component id="searchBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="427" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="498" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="exitBtn" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -83,6 +85,7 @@
                   <Component id="anhadirCestaBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cantidadSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="anhadirProductoBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="eliminarAlmacenBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -167,6 +170,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="anhadirProductoBtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="eliminarAlmacenBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Eliminar almacen"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eliminarAlmacenBtnActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

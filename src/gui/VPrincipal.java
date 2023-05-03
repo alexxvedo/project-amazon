@@ -42,12 +42,14 @@ public class VPrincipal extends javax.swing.JFrame {
 
         anhadirCestaBtn.setVisible(false);
         cantidadSpinner.setVisible(false);
+        eliminarAlmacenBtn.setVisible(false);
+        anhadirProductoBtn.setVisible(false);
+
 
         if (clienteActual.getEmail().equals("admin")) {
             anhadirProductoBtn.setVisible(true);
-        } else {
-            anhadirProductoBtn.setVisible(false);
-        }
+            eliminarAlmacenBtn.setVisible(true);
+        } 
 
         this.tablaProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
@@ -91,6 +93,7 @@ public class VPrincipal extends javax.swing.JFrame {
         anhadirCestaBtn = new javax.swing.JButton();
         cantidadSpinner = new javax.swing.JSpinner();
         anhadirProductoBtn = new javax.swing.JButton();
+        eliminarAlmacenBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Amazon");
@@ -145,6 +148,13 @@ public class VPrincipal extends javax.swing.JFrame {
             }
         });
 
+        eliminarAlmacenBtn.setText("Eliminar almacen");
+        eliminarAlmacenBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarAlmacenBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -163,9 +173,11 @@ public class VPrincipal extends javax.swing.JFrame {
                                 .addComponent(VerCestaBtn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(verPerfilBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE)
                                 .addComponent(anhadirProductoBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(eliminarAlmacenBtn)
+                                .addGap(106, 106, 106)
                                 .addComponent(cantidadSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(anhadirCestaBtn)
@@ -185,7 +197,7 @@ public class VPrincipal extends javax.swing.JFrame {
                     .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(exitBtn)
@@ -193,7 +205,8 @@ public class VPrincipal extends javax.swing.JFrame {
                     .addComponent(verPerfilBtn)
                     .addComponent(anhadirCestaBtn)
                     .addComponent(cantidadSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(anhadirProductoBtn))
+                    .addComponent(anhadirProductoBtn)
+                    .addComponent(eliminarAlmacenBtn))
                 .addContainerGap())
         );
 
@@ -231,11 +244,16 @@ public class VPrincipal extends javax.swing.JFrame {
         fa.verVentanaAnhadirProductos();
     }//GEN-LAST:event_anhadirProductoBtnActionPerformed
 
+    private void eliminarAlmacenBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarAlmacenBtnActionPerformed
+        this.fa.verEliminarAlmacen();
+    }//GEN-LAST:event_eliminarAlmacenBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton VerCestaBtn;
     private javax.swing.JButton anhadirCestaBtn;
     private javax.swing.JButton anhadirProductoBtn;
     private javax.swing.JSpinner cantidadSpinner;
+    private javax.swing.JButton eliminarAlmacenBtn;
     private javax.swing.JButton exitBtn;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton searchBtn;

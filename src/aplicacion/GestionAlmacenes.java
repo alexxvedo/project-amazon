@@ -13,6 +13,10 @@ public class GestionAlmacenes {
         this.fgui = fgui;
         this.fbd = fbd;
     }
+    
+    public void verEliminarAlmacen() {
+        fgui.verEliminarAlmacen();
+    }
 
     public ArrayList<Almacen> obtenerAlmacenes() {
         return fbd.obtenerAlmacenes();

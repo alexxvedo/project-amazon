@@ -151,6 +151,10 @@ public class FachadaAplicacion {
     public void verPerfil() {
         cc.verVentanaPerfil(this.cc.getCliente());
     }
+    
+    public void verEliminarAlmacen(){
+        calm.verEliminarAlmacen();
+    }
 
     public void verMetodosPago() {
         cmp.verVentaMetodosPago(this.cc.getCliente());

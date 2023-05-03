@@ -8,6 +8,7 @@ public class FachadaGui {
     aplicacion.FachadaAplicacion fa;
     VPrincipal vp;
     VCliente vc;
+    VEliminarAlmacen vel;
 
     public FachadaGui(aplicacion.FachadaAplicacion fa) {
         this.fa = fa;
@@ -32,6 +33,11 @@ public class FachadaGui {
         vc = new VCliente(vp, true, fa, cliente);
         vc.setVisible(true);
 
+    }
+    
+    public void verEliminarAlmacen(){
+        vel = new VEliminarAlmacen(vp, true, fa);
+        vel.setVisible(true);
     }
 
     public void verVentanaCesta(Cliente cliente) {
