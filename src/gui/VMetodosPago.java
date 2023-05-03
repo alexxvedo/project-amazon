@@ -46,8 +46,10 @@ public class VMetodosPago extends javax.swing.JDialog {
                     int row = tablaMetodosPago.getSelectedRow();
                     MetodoPago m = ((ModeloTablaMetodosPago) tablaMetodosPago.getModel()).obtenerMetodoPago(row);
                     oldM = m;
+                    
                     numTarText.setText("" + m.getNumeroTarjeta());
                     preferidaBtn.setSelected(m.isPreferida());
+                    activaBtn.setSelected(m.isActiva());
 
                 } else {
 
@@ -88,6 +90,7 @@ public class VMetodosPago extends javax.swing.JDialog {
         numTarText = new javax.swing.JTextField();
         preferidaBtn = new javax.swing.JRadioButton();
         saveBtn = new javax.swing.JButton();
+        activaBtn = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -117,12 +120,24 @@ public class VMetodosPago extends javax.swing.JDialog {
 
         numTarLabel.setText("Num. tar.");
 
-        preferidaBtn.setText("Por defecto");
+        preferidaBtn.setText("Preferida");
+        preferidaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                preferidaBtnActionPerformed(evt);
+            }
+        });
 
         saveBtn.setText("Guardar");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveBtnActionPerformed(evt);
+            }
+        });
+
+        activaBtn.setText("Activa");
+        activaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                activaBtnActionPerformed(evt);
             }
         });
 
@@ -139,7 +154,9 @@ public class VMetodosPago extends javax.swing.JDialog {
                         .addComponent(numTarText, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(preferidaBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(activaBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
                         .addComponent(editBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(saveBtn))
@@ -159,7 +176,8 @@ public class VMetodosPago extends javax.swing.JDialog {
                     .addComponent(numTarText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(preferidaBtn)
                     .addComponent(saveBtn)
-                    .addComponent(editBtn))
+                    .addComponent(editBtn)
+                    .addComponent(activaBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -177,7 +195,7 @@ public class VMetodosPago extends javax.swing.JDialog {
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
 
-        MetodoPago m = new MetodoPago(Long.parseLong(numTarText.getText()), cliente, true, preferidaBtn.isSelected());
+        MetodoPago m = new MetodoPago(Long.parseLong(numTarText.getText()), cliente, activaBtn.isSelected(), preferidaBtn.isSelected());
         int res = this.fa.actualizarMetodoPago(oldM, m);
 
         if (res == 1) {
@@ -222,7 +240,16 @@ public class VMetodosPago extends javax.swing.JDialog {
 
     }//GEN-LAST:event_saveBtnActionPerformed
 
+    private void preferidaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_preferidaBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_preferidaBtnActionPerformed
+
+    private void activaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activaBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_activaBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton activaBtn;
     private javax.swing.JButton closeBtn;
     private javax.swing.JButton editBtn;
     private javax.swing.JScrollPane jScrollPane1;

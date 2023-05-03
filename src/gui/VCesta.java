@@ -58,7 +58,11 @@ public class VCesta extends javax.swing.JDialog {
             this.totalPagar += key.getPrecio() * value;
 
         }
-        totalPagar += distribuidorActual.getCosteEnvio();
+        
+        if (!cliente.isPrime()){
+            totalPagar += distribuidorActual.getCosteEnvio();
+        }
+        
         
         this.totalPagarLabel.setText("" + this.totalPagar);
 
