@@ -103,6 +103,10 @@ public class FachadaAplicacion {
     public int eliminarDireccion(Direccion d) {
         return cd.eliminarDireccion(d);
     }
+    
+    public int eliminarAlmacen(Almacen almacenEliminar, Almacen almacenDestino) {
+        return calm.eliminarAlmacen(almacenEliminar, almacenDestino);
+    }
 
     public int eliminarMetodoPago(MetodoPago m) {
         return cmp.eliminarMetodoPago(m);

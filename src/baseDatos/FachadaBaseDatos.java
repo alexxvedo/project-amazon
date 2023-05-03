@@ -8,7 +8,6 @@ import aplicacion.MetodoPago;
 import aplicacion.Pedido;
 import aplicacion.Producto;
 import aplicacion.EmpresaVendedora;
-import com.sun.jdi.connect.spi.Connection;
 import java.awt.Color;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -123,6 +122,10 @@ public class FachadaBaseDatos {
 
     public int eliminarDireccion(Direccion d) {
         return daoDireccion.eliminarDireccion(d);
+    }
+    
+    public int eliminarAlmacen(Almacen almacenEliminar, Almacen almacenDestino) {
+        return daoAlmacen.eliminarAlmacen(almacenEliminar, almacenDestino);
     }
 
     public int eliminarMetodoPago(MetodoPago m) {

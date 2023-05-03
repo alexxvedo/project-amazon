@@ -1,7 +1,6 @@
 package baseDatos;
 
 import aplicacion.Almacen;
-import aplicacion.Direccion;
 import java.awt.Color;
 import java.sql.*;
 import java.util.ArrayList;
