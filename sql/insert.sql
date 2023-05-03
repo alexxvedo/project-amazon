@@ -55,25 +55,45 @@ insert into productos values
 	(default, 11, 1, 'Amazon Prime', 'El prime de toda la vida', 50.00, 1000);
 
 insert into clientes values
-	(default, 'admin', 691669052, '01-21-1994', true, 'admin', 'admin'),
-	(default, 'Jose Perez Jimenez', 691669052, '01-21-1999', false, 'jpj@gmail.com', 'jpj'),
-	(default, 'Maria Garcia Lopez', 691669053, '04-19-2015', false, 'mgl@gmail.com', 'mgl'),
-	(default, 'Juan Rodriguez Sanchez', 691669054, '07-17-2010', false, 'jrs@gmail.com', 'jrs'),
-	(default, 'Ana Gonzalez Fernandez', 691669055, '10-15-2005', false, 'agf@gmail.com', 'agf'),
-	(default, 'Carlos Martinez Perez', 691669056, '01-13-2000', false, 'cmp@gmail.com', 'cmp'),
-	(default, 'Laura Sanchez Rodriguez', 691669057, '04-11-2016', false, 'lsr@gmail.com', 'lsr'),
-	(default, 'Antonio Fernandez Gonzalez', 691669058, '07-09-2011', false, 'afg@gmail.com', 'afg'),
-	(default, 'Sara Perez Martinez', 691669059, '10-07-2006', false, 'spm@gmail.com', 'spm'),
-	(default, 'Pedro Lopez Sanchez', 691669060, '01-05-2001', false, 'pls@gmail.com', 'pls'),
-	(default, 'Carmen Rodriguez Fernandez', 691669061, '04-03-2017', false, 'crf@gmail.com', 'crf'),
-	(default, 'Daniel Gonzalez Perez', 691669062, '07-01-2012', false, 'dgp@gmail.com', 'dgp'),
-	(default, 'Paula Martinez Rodriguez', 691669063, '09-29-2007', false, 'pmr@gmail.com', 'pmr'),
-	(default, 'Manuel Sanchez Gonzalez', 691669064, '12-27-2002', false, 'msg@gmail.com', 'msg'),
-	(default, 'Lucia Fernandez Martinez', 691669065, '03-25-2018', false, 'lfm@gmail.com', 'lfm'),
-	(default, 'Marcos Perez Sanchez', 691669066, '06-23-2013', false, 'mps@gmail.com', 'mps'),
-	(default, 'Sofia Rodriguez Fernandez', 691669067, '09-21-2008', false, 'srf@gmail.com', 'srf'),
-	(default, 'Javier Gonzalez Perez', 691669068, '12-19-2003', false, 'jgp@gmail.com', 'jgp'),
-	(default, 'Test', 111111111, '01-01-2000', false, 'test', 'test');
+	(default, 'admin', 691669052, '01-21-1994', true, 'admin', '21232f297a57a5a743894a0e4a801fc3'), -- admin
+	(default, 'Jose Perez Jimenez', 691669052, '01-21-1999', false, 'jpj@gmail.com', 'e2275670962d659c367c780875a2decc'), --jpj
+	(default, 'Maria Garcia Lopez', 691669053, '04-19-2015', false, 'mgl@gmail.com', '738f144b1775be154d22e9640ce970ef'), --mgl
+	(default, 'Juan Rodriguez Sanchez', 691669054, '07-17-2010', false, 'jrs@gmail.com', 'c5f463701e07238d500611d7ee42ea47'),--jrs
+	(default, 'Ana Gonzalez Fernandez', 691669055, '10-15-2005', false, 'agf@gmail.com', '6d2698fa6a21e6a5b50b7c5d3d667742'), --agf
+	(default, 'Carlos Martinez Perez', 691669056, '01-13-2000', false, 'cmp@gmail.com', '31b4e550aa5fd883246f9b9ceae82483'), --cmp
+	(default, 'Laura Sanchez Rodriguez', 691669057, '04-11-2016', false, 'lsr@gmail.com', '971ea0ac060f20c995a5a3871d91deaf'), --lsr
+	(default, 'Antonio Fernandez Gonzalez', 691669058, '07-09-2011', false, 'afg@gmail.com', 'ee676ed9ce5bd51b4452ddfbdf962ef7'), --afg
+	(default, 'Sara Perez Martinez', 691669059, '10-07-2006', false, 'spm@gmail.com', '51762626b4f785729159fd35eea74deb'), --spm
+	(default, 'Pedro Lopez Sanchez', 691669060, '01-05-2001', false, 'pls@gmail.com', 'd89a8633204d02f952c89b8245f2287e'), --pls
+	(default, 'Carmen Rodriguez Fernandez', 691669061, '04-03-2017', false, 'crf@gmail.com', '62f29e71e972128920deb04f964ca04e'), --crf
+	(default, 'Daniel Gonzalez Perez', 691669062, '07-01-2012', false, 'dgp@gmail.com', '7a77910cfd8c77ab1b0892a537ec6103'), --dgp
+	(default, 'Paula Martinez Rodriguez', 691669063, '09-29-2007', false, 'pmr@gmail.com', '2baba74f3ab8c4f508ce57085c17cd62'), --pmr
+	(default, 'Manuel Sanchez Gonzalez', 691669064, '12-27-2002', false, 'msg@gmail.com', '6e2baaf3b97dbeef01c0043275f9a0e7'), --msg
+	(default, 'Lucia Fernandez Martinez', 691669065, '03-25-2018', false, 'lfm@gmail.com', '400ad14d9fc8101047cb994ec6dea0be'), --lfm
+	(default, 'Marcos Perez Sanchez', 691669066, '06-23-2013', false, 'mps@gmail.com', '7c1dc91629afef3369fc77b119a2e24d'), --mps
+	(default, 'Sofia Rodriguez Fernandez', 691669067, '09-21-2008', false, 'srf@gmail.com', '9fa1e546d34dd62a768567052aaa9f92'), --srf
+	(default, 'Javier Gonzalez Perez', 691669068, '12-19-2003', false, 'jgp@gmail.com', 'ddc8f2b30c42909a8d151357a70bcc4b'), --jgp
+	(default, 'Test', 111111111, '01-01-2000', false, 'test', '098f6bcd4621d373cade4e832627b4f6');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 insert into metodosPago values
 	(4000123456789010, 1, true, true),

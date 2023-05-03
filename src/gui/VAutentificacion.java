@@ -1,6 +1,8 @@
 package gui;
 
 import java.awt.event.KeyEvent;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class VAutentificacion extends javax.swing.JDialog {
 
@@ -126,9 +128,28 @@ public class VAutentificacion extends javax.swing.JDialog {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
 
+        String hashPassword;
+        try{
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(textoPassword.getText().getBytes());
+            byte[] bytes = md.digest();
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < bytes.length; i++){
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            hashPassword = sb.toString();
+        }catch (NoSuchAlgorithmException e) {
+            hashPassword = "";
+            e.printStackTrace();
+            
+        }
+        System.out.println(hashPassword);
+        
+        
         etiquetaFallo.setVisible(false);
-
-        if (fa.comprobarAutentificacion(textoCliente.getText(), textoPassword.getText())) {
+        
+        
+        if (fa.comprobarAutentificacion(textoCliente.getText(), hashPassword)) {
 
             this.dispose();
 
