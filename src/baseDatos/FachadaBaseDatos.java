@@ -8,6 +8,7 @@ import aplicacion.MetodoPago;
 import aplicacion.Pedido;
 import aplicacion.Producto;
 import aplicacion.EmpresaVendedora;
+import com.sun.jdi.connect.spi.Connection;
 import java.awt.Color;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -48,6 +49,9 @@ public class FachadaBaseDatos {
             usuario.setProperty("user", configuracion.getProperty("usuario"));
             usuario.setProperty("password", configuracion.getProperty("clave"));
             this.conexion = java.sql.DriverManager.getConnection("jdbc:" + gestor + "://" + configuracion.getProperty("servidor") + ":" + configuracion.getProperty("puerto") + "/" + configuracion.getProperty("baseDatos"), usuario);
+
+            this.conexion.setTransactionIsolation(java.sql.Connection.TRANSACTION_READ_COMMITTED);
+            this.conexion.setAutoCommit(true);
 
             daoClientes = new DAOCliente(conexion, fa);
             daoProductos = new DAOProducto(conexion, fa);
