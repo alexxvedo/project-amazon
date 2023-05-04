@@ -110,14 +110,21 @@ public class DAOAlmacen extends AbstractDAO {
             // Confirmamos los cambios
             con.commit();
 
-            // Restauramos los valores por defecto
-            con.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
-            con.setAutoCommit(true);
-
             res = 1;
 
             // Comprobamos si se produjo algun error
         } catch (Exception e) {
+
+            try {
+
+                con.rollback();
+
+            } catch (SQLException ex) {
+
+                System.out.println(e.getMessage());
+                this.getFachadaAplicacion().muestraExcepcion(ex.getMessage(), Color.RED);
+
+            }
 
             System.out.println(e.getMessage());
             this.getFachadaAplicacion().muestraExcepcion(e.getMessage(), Color.RED);
@@ -126,6 +133,10 @@ public class DAOAlmacen extends AbstractDAO {
         } finally {
 
             try {
+
+                // Restauramos los valores por defecto
+                con.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+                con.setAutoCommit(true);
 
                 // Cerramos los cursores
                 stmAlmacenEliminar.close();

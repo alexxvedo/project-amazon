@@ -3,11 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/ppabli/Desktop/project-amazon/src/baseDatos/FachadaBaseDatos.java</file>
-            <file>file:/Users/ppabli/Desktop/project-amazon/src/gui/VObtenerPrime.java</file>
+            <file>file:/Users/ppabli/Desktop/project-amazon/src/baseDatos/DAOMetodoPago.java</file>
+            <file>file:/Users/ppabli/Desktop/project-amazon/src/baseDatos/DAODireccion.java</file>
+            <file>file:/Users/ppabli/Desktop/project-amazon/src/baseDatos/DAOEmpresasVendedoras.java</file>
             <file>file:/Users/ppabli/Desktop/project-amazon/src/baseDatos/DAOAlmacen.java</file>
-            <file>file:/Users/ppabli/Desktop/project-amazon/src/aplicacion/FachadaAplicacion.java</file>
-            <file>file:/Users/ppabli/Desktop/project-amazon/src/aplicacion/GestionAlmacenes.java</file>
+            <file>file:/Users/ppabli/Desktop/project-amazon/src/baseDatos/DAODistribuidor.java</file>
+            <file>file:/Users/ppabli/Desktop/project-amazon/src/baseDatos/DAOPedido.java</file>
+            <file>file:/Users/ppabli/Desktop/project-amazon/src/baseDatos/DAOCliente.java</file>
+            <file>file:/Users/ppabli/Desktop/project-amazon/src/baseDatos/DAOProducto.java</file>
+            <file>file:/Users/ppabli/Desktop/project-amazon/src/gui/VCesta.java</file>
         </group>
     </open-files>
 </project-private>

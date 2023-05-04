@@ -124,12 +124,19 @@ public class DAOPedido extends AbstractDAO {
             // Comprometemos los cambios
             con.commit();
 
-            // Devolvemos los valores por defecto a la conexion
-            con.setAutoCommit(true);
-            con.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
-
             // Gestionamos las posibles excepciones
         } catch (Exception e) {
+
+            try {
+
+                con.rollback();
+
+            } catch (SQLException ex) {
+
+                System.out.println(e.getMessage());
+                this.getFachadaAplicacion().muestraExcepcion(ex.getMessage(), Color.RED);
+
+            }
 
             System.out.println(e.getMessage());
             this.getFachadaAplicacion().muestraExcepcion(e.getMessage(), Color.RED);
@@ -137,6 +144,10 @@ public class DAOPedido extends AbstractDAO {
         } finally {
 
             try {
+
+                // Devolvemos los valores por defecto a la conexion
+                con.setAutoCommit(true);
+                con.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
 
                 // Cerramos los cursores
                 stmPedidos.close();
@@ -277,14 +288,21 @@ public class DAOPedido extends AbstractDAO {
             // Comprometemos los cambios
             con.commit();
 
-            // Devolvemos los valores por defecto a la conexion
-            con.setAutoCommit(true);
-            con.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
-
             res = 1;
 
             // Comprobamos si se produjo algun error
         } catch (Exception e) {
+
+            try {
+
+                con.rollback();
+
+            } catch (SQLException ex) {
+
+                System.out.println(e.getMessage());
+                this.getFachadaAplicacion().muestraExcepcion(ex.getMessage(), Color.RED);
+
+            }
 
             System.out.println(e.getMessage());
             this.getFachadaAplicacion().muestraExcepcion(e.getMessage(), Color.RED);
@@ -293,6 +311,10 @@ public class DAOPedido extends AbstractDAO {
         } finally {
 
             try {
+
+                // Devolvemos los valores por defecto a la conexion
+                con.setAutoCommit(true);
+                con.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
 
                 // Cerramos los cursores
                 stmPedido.close();

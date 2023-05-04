@@ -153,3 +153,24 @@ do $$
 	end
 
 $$
+
+-- Transaccion para obtener los pedidos de un cliente, asi como los datos de las entidades relacionadas
+begin;
+	
+	select * from pedidos as p 
+	inner join distribuidores as d on d.id = p.iddistribuidor 
+	inner join direcciones as dir on dir.id = p.iddireccion 
+	inner join metodospago as m on m.numerotarjeta = p.numtarjeta 
+	where p.idcliente = 1;
+	
+end;
+
+-- Transaccion para obtener los productos a la venta, asi como los datos de las entidades relacionadas
+begin;
+	
+	select * from productos as p 
+	inner join empresasvendedoras as e on e.id = p.idempresa 
+	inner join almacenes as a on a.id = p.idalmacen 
+	where p.nombre like '%a%' and existencias != 0;
+	
+end;
