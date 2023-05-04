@@ -1,7 +1,10 @@
 package aplicacion;
 
+// Entidad almacen de la base de datos
+// Representa un almacen de la compania donde se podran tener los productos almacenados
 public class Almacen {
 
+    // Atributos propios que representan las columnas de las tablas
     private int id;
     private String calle;
     private int numero;

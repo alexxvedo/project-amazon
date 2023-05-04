@@ -1,7 +1,10 @@
 package aplicacion;
 
+// Entidad producto de la base de datos
+// Representa los productos disponibles para su compra en la aplicacion
 public class Producto {
 
+    // Atributos propios que representan las columnas de las tablas
     private int id;
     private EmpresaVendedora empresa;
     private Almacen almacen;

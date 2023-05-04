@@ -4,6 +4,7 @@ import aplicacion.Cliente;
 import aplicacion.Direccion;
 import javax.swing.table.AbstractTableModel;
 
+// Codigo de la tabla personalizada para direccion de envio
 public class ModeloTablaDirecciones extends AbstractTableModel {
 
     private java.util.List<Direccion> direcciones;

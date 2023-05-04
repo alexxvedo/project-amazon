@@ -1,5 +1,6 @@
 package baseDatos;
 
+// Clase abstracta base sobre las que se construiran los demas objetos de acceso a datos
 public abstract class AbstractDAO {
 
     private aplicacion.FachadaAplicacion fa;

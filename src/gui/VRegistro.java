@@ -15,7 +15,8 @@ public class VRegistro extends javax.swing.JDialog {
         this.fa = fa;
 
         initComponents();
-        
+
+        // Mostramos el mensaje de ayuda para el formato de la fecha
         this.fechaInput.setToolTipText("Formato de fecha: yyyy-mm-dd");
 
     }
@@ -139,11 +140,11 @@ public class VRegistro extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
     private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
 
         try {
 
+            // Obtenemos los datos de los distintos inputs
             String nombre = nombreInput.getText();
             String email = emailInput.getText();
             String password = String.valueOf(passwordInput.getPassword());
@@ -152,15 +153,18 @@ public class VRegistro extends javax.swing.JDialog {
 
             int telefono = Integer.parseInt(telefonoInput.getText());
 
+            // Comprobamos que ambas contrasenas sean las mismas
             if (!password.equals(confirmPassword)) {
 
                 throw new Exception("Las contrasenas no coinciden");
 
             }
 
+            // Transformamos la fecha formato string a date
             SimpleDateFormat formatter = new SimpleDateFormat(Cliente.format);
             Date fechaNacimiento = formatter.parse(fechaString);
 
+            // Hasheamos la contrasena
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(password.getBytes());
             byte[] bytes = md.digest();
@@ -170,10 +174,13 @@ public class VRegistro extends javax.swing.JDialog {
                 sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
             }
 
+            // Guardamos la contrasena hasheada
             String hashPassword = sb.toString();
 
+            // Llamamos a la funcion para generar un nuevo cliente
             int res = fa.crearCliente(new Cliente(-1, nombre, telefono, fechaNacimiento, false, email, hashPassword));
 
+            // Si todo funciono correctamente mostramos un mensaje y cambiamos las ventanas para que pueda iniciar sesion
             if (res == 1) {
 
                 fa.muestraExcepcion("Se ha registrado el usuario correctamente", Color.green);
@@ -182,6 +189,7 @@ public class VRegistro extends javax.swing.JDialog {
 
             }
 
+            // Comprobamos si se lanzo alguna excepcion y mostramos un mensaje informativo
         } catch (Exception e) {
 
             System.out.println(e.getMessage());

@@ -7,6 +7,7 @@ import aplicacion.MetodoPago;
 import aplicacion.Pedido;
 import javax.swing.table.AbstractTableModel;
 
+// Codigo de la tabla personalizada para pedidos
 public class ModeloTablaPedidos extends AbstractTableModel {
 
     private java.util.List<Pedido> pedidos;

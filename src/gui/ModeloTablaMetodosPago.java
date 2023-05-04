@@ -5,6 +5,7 @@ import aplicacion.MetodoPago;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
+// Codigo de la tabla personalizada para metodos de pago
 public class ModeloTablaMetodosPago extends AbstractTableModel {
 
     private java.util.List<MetodoPago> metodosPago;

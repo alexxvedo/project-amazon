@@ -24,7 +24,6 @@ public class VAutentificacion extends javax.swing.JDialog {
 
     }
 
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -150,20 +149,27 @@ public class VAutentificacion extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
 
         String hashPassword;
         try {
+
+            // Intentamos hashear la contrasena que se inserto
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(textoPassword.getText().getBytes());
             byte[] bytes = md.digest();
             StringBuilder sb = new StringBuilder();
+
             for (int i = 0; i < bytes.length; i++) {
+
                 sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+
             }
+
             hashPassword = sb.toString();
+
         } catch (NoSuchAlgorithmException e) {
+
             hashPassword = "";
             e.printStackTrace();
 
@@ -171,7 +177,10 @@ public class VAutentificacion extends javax.swing.JDialog {
 
         etiquetaFallo.setVisible(false);
 
+        // Comprobamos que los datos de inicio de sesion son correctos
         if (fa.comprobarAutentificacion(textoCliente.getText(), hashPassword)) {
+
+            // Cargamos la ventana principal
             this.dispose();
             fa.verVentanaPrincipal();
 
@@ -197,7 +206,6 @@ public class VAutentificacion extends javax.swing.JDialog {
         VRegistro vreg = new VRegistro(fa);
         vreg.setVisible(true);
         this.dispose();
-
     }//GEN-LAST:event_registrarseBtnMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

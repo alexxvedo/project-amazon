@@ -24,44 +24,53 @@ public class VDirecciones extends javax.swing.JDialog {
         this.customBehavior();
     }
 
+    // Funcion para cargar los datos en la tabla de direcciones
     private void obtenerDirecciones() {
 
+        // Creamos el modelo
         ModeloTablaDirecciones m = (ModeloTablaDirecciones) this.tablaDirecciones.getModel();
 
+        // Insertamos los datos en la tabla
         m.setFilas(fa.obtenerDirecciones(this.cliente));
-
-        if (m.getRowCount() > 0) {
-
-            this.tablaDirecciones.setRowSelectionInterval(0, 0);
-
-        }
 
     }
 
+    // Funcion para gestionar el comportamiento y propiedades de los distintos elementos
     private void customBehavior() {
 
+        // Ocultamos el boton hasta que se cumplan las condiciones para que se pueda usar
         this.editBtn.setVisible(false);
 
+        // Indicamos el modo de seleccion de la tabla de direcciones
         this.tablaDirecciones.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
+        // Controlamos el evento de cuando se selecciona en la tabla
         this.tablaDirecciones.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
             @Override
             public void valueChanged(ListSelectionEvent e) {
 
+                // Obtenemos si hay alguna fila seleccionada
                 isEditing = tablaDirecciones.getSelectedRows().length != 0;
 
+                // Ajustamos la visibilidad de los botonos segun se tenga seleccionada alguna fila o no
                 saveBtn.setVisible(!isEditing);
                 editBtn.setVisible(isEditing);
                 removeBtn.setVisible(isEditing);
 
+                // Si hay alguna fila seleccionada
                 if (isEditing) {
 
+                    // Obtenemos la fila
                     int row = tablaDirecciones.getSelectedRow();
+
+                    // Obtenemos el contenido de la fila, en este caso la direccion
                     Direccion d = ((ModeloTablaDirecciones) tablaDirecciones.getModel()).obtenerDireccion(row);
 
+                    // Guardamos la seleccion
                     selectedDir = d;
 
+                    // Ajustamos el contenido de los campos de texto
                     calleText.setText(d.getCalle());
                     ciudadText.setText(d.getCiudad());
                     numeroText.setText("" + d.getNumero());
@@ -70,6 +79,7 @@ public class VDirecciones extends javax.swing.JDialog {
 
                 } else {
 
+                    // Ajustamos el contenido de los campos de texto
                     calleText.setText("");
                     ciudadText.setText("");
                     numeroText.setText("");
@@ -219,12 +229,16 @@ public class VDirecciones extends javax.swing.JDialog {
 
     private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
 
+        // Mostramos un mensaje solicitando confirmacion para realizar la accion
         int confirmacion = JOptionPane.showConfirmDialog(this, "¿Seguro que quiere eliminar esta direccion?", "Confirmacion", JOptionPane.YES_NO_OPTION);
 
+        // Si nos indica que si, borramos la direccion de envio
         if (confirmacion == JOptionPane.YES_OPTION) {
 
+            // LLamamos a la funcion para eliminar la direccion de envio de la base de datos
             int res = this.fa.eliminarDireccion(this.selectedDir);
 
+            // Si la accion se realizo correctamente, mostramos un mensaje de exito
             if (res == 1) {
 
                 this.fa.muestraExcepcion("Direccion eliminada correctamente", Color.GREEN);
@@ -238,9 +252,13 @@ public class VDirecciones extends javax.swing.JDialog {
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
 
+        // Creamos una nueva instancia de la direccion de envio
         Direccion d = new Direccion(-1, this.cliente, calleText.getText(), Integer.parseInt(numeroText.getText()), ciudadText.getText(), Integer.parseInt(codigoPostalText.getText()), preferidaBtn.isSelected());
+
+        // Llamamos a la funcion para crear la nueva direccion en la base de datos
         int res = this.fa.crearDireccion(d);
 
+        // Si la accion se realizo correctamente, mostramos un mensaje de exito
         if (res == 1) {
 
             this.fa.muestraExcepcion("Direccion creada correctamente", Color.GREEN);
@@ -252,9 +270,13 @@ public class VDirecciones extends javax.swing.JDialog {
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
 
+        // Creamos una nueva instancia de la direccion de envio, con los datos actualizados
         Direccion d = new Direccion(selectedDir.getId(), this.cliente, calleText.getText(), Integer.parseInt(numeroText.getText()), ciudadText.getText(), Integer.parseInt(codigoPostalText.getText()), preferidaBtn.isSelected());
+
+        // Llamamos a la funcion para actualizar la direccion en la base de datos
         int res = this.fa.actualizarDireccion(d);
 
+        // Si la accion se realizo correctamente, mostramos un mensaje de exito
         if (res == 1) {
 
             this.fa.muestraExcepcion("Direccion actualizada correctamente", Color.GREEN);

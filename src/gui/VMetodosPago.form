@@ -126,9 +126,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Preferida"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="preferidaBtnActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="saveBtn">
       <Properties>
@@ -142,9 +139,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Activa"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="activaBtnActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>

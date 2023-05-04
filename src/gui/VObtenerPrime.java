@@ -18,6 +18,7 @@ public class VObtenerPrime extends javax.swing.JDialog {
     private javax.swing.JDialog ventanaAnterior;
 
     public VObtenerPrime(java.awt.Frame parent, boolean modal, aplicacion.FachadaAplicacion fa, javax.swing.JDialog ventanaAnterior, Cliente cliente) {
+
         super(parent, modal);
         this.cliente = cliente;
         this.ventanaAnterior = ventanaAnterior;
@@ -28,27 +29,40 @@ public class VObtenerPrime extends javax.swing.JDialog {
 
     }
 
+    // Funcion para gestionar el comportamiento y propiedades de los distintos elementos
     private void customBehavior() {
 
+        // Indicamos el modo de seleccion de la tabla de direcciones
         this.tablaMetodosPago.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        // Ocultamos el boton hasta que se cumplan las condiciones para que se pueda usar
         this.buyBtn.setVisible(false);
 
+        // Controlamos el evento de cuando se selecciona en la tabla
         this.tablaMetodosPago.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
             @Override
             public void valueChanged(ListSelectionEvent e) {
 
+                // Obtenemos si hay alguna fila seleccionada
                 boolean isValid = tablaMetodosPago.getSelectedRows().length != 0;
 
+                // Si hay alguna fila seleccionada
                 if (!isValid) {
+
+                    // Ocultamos el boton el boton
                     buyBtn.setVisible(isValid);
                     return;
+
                 }
 
+                // Obtenemos la fila
                 int row = tablaMetodosPago.getSelectedRow();
 
+                // Obtenemos el contenido de la fila, metodo de pago indicado
                 MetodoPago m = ((ModeloTablaMetodosPago) tablaMetodosPago.getModel()).obtenerMetodoPago(row);
 
+                // Mostramos el boton de pago si la tarjeta esta activa
                 buyBtn.setVisible(m.isActiva());
 
             }
@@ -57,17 +71,14 @@ public class VObtenerPrime extends javax.swing.JDialog {
 
     }
 
+    // Funcion para cargar los datos en la tabla de metodos de pago
     private void obtenerMetodosPago() {
 
+        // Creamos el modelo
         ModeloTablaMetodosPago m = (ModeloTablaMetodosPago) this.tablaMetodosPago.getModel();
 
+        // Insertamos los datos en la tabla
         m.setFilas(fa.obtenerMetodosPago(this.cliente));
-
-        if (m.getRowCount() > 0) {
-
-            this.tablaMetodosPago.setRowSelectionInterval(0, 0);
-
-        }
 
     }
 
@@ -183,20 +194,31 @@ public class VObtenerPrime extends javax.swing.JDialog {
 
     private void buyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyBtnActionPerformed
 
+        // Obtenemos la fila seleccionada
         int row = tablaMetodosPago.getSelectedRow();
 
+        // Obtenemos el contenido de la fila
         MetodoPago m = ((ModeloTablaMetodosPago) tablaMetodosPago.getModel()).obtenerMetodoPago(row);
 
+        // Creamos una nueva cesta de productos unicamente con el servicio de prime
         HashMap<Producto, Integer> productos = new HashMap<>();
+
+        // Recuperamos los datos de prime de los productos de la base de datos
         productos.put(fa.obtenerProductos("Amazon Prime").get(0), 1);
 
+        // Llamamos a la funcion para crear el pedido en la base de datos
         int res = this.fa.crearPedido(cliente, m, null, null, productos, true);
 
+        // Si la accion se realizo correctamente
         if (res == 1) {
 
+            // Creamos una nueva instancia del cliente actual con el prime a true
             Cliente nuevoCliente = new Cliente(this.cliente.getId(), this.cliente.getNombre(), this.cliente.getTelefono(), this.cliente.getFechaNacimiento(), true, this.cliente.getEmail(), this.cliente.getContrasena());
+
+            // Llamamos a la funcion para actualizar el cliente
             res = this.fa.actualizarCliente(nuevoCliente);
 
+            // Si todo se realizo correctamente, mostramos un mensaje y cerramos las ventanas
             if (res == 1) {
 
                 this.fa.muestraExcepcion("Prime obtenido correctamente", Color.GREEN);

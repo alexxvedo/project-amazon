@@ -9,66 +9,78 @@ import javax.swing.event.ListSelectionListener;
 
 public class VPrincipal extends javax.swing.JFrame {
 
-    aplicacion.FachadaAplicacion fa;
-
+    // Variables que empleamos en la ventana
+    private aplicacion.FachadaAplicacion fa;
     private boolean isEditing;
     private Producto selectedProd;
     private int cantidadProductoActual = 0;
     private Cliente clienteActual;
 
     public VPrincipal(aplicacion.FachadaAplicacion fa, Cliente cliente) {
+
         this.fa = fa;
         this.clienteActual = cliente;
 
         initComponents();
         customBehavior();
+
     }
 
+    // Funcion para cargar los datos en la tabla de productos
     private void buscarProductos() {
 
+        // Creamos el modelo
         ModeloTablaProductos m = (ModeloTablaProductos) this.tablaProductos.getModel();
 
+        // Insertamos los datos
         m.setFilas(fa.obtenerProductos(searchText.getText()));
-
-        if (m.getRowCount() > 0) {
-
-            this.tablaProductos.setRowSelectionInterval(0, 0);
-
-        }
 
     }
 
+    // Funcion para gestionar el comportamiento y propiedades de los distintos elementos
     private void customBehavior() {
 
+        // Ocultamos los botonos hasta que cumplan la condicion para poder usarse
         anhadirCestaBtn.setVisible(false);
         cantidadSpinner.setVisible(false);
         eliminarAlmacenBtn.setVisible(false);
         anhadirProductoBtn.setVisible(false);
 
-
+        // En caso de que el cliente que inicio sesion sea admin mostramos los botones extras
         if (clienteActual.getEmail().equals("admin")) {
             anhadirProductoBtn.setVisible(true);
             eliminarAlmacenBtn.setVisible(true);
-        } 
+        }
 
+        // Indicamos el modo de seleccion
         this.tablaProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
+        // Controlamos el evento de cuando se selecciona en la tabla
         this.tablaProductos.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
             @Override
             public void valueChanged(ListSelectionEvent e) {
 
+                // Obtenemos si hay alguna fila seleccionada
                 isEditing = tablaProductos.getSelectedRows().length != 0;
 
+                // Mostramos los botonos si se cumplen las condiciones
                 anhadirCestaBtn.setVisible(isEditing);
                 cantidadSpinner.setVisible(isEditing);
 
+                // Si hay alguna fila seleccionada
                 if (isEditing) {
 
+                    // Obtenemos la fila seleccionada
                     int row = tablaProductos.getSelectedRow();
+
+                    // Recuperamos el valor de la fila indicada
                     Producto p = ((ModeloTablaProductos) tablaProductos.getModel()).obtenerProducto(row);
 
+                    // Guardamos el producto
                     selectedProd = p;
+
+                    // Ajustamos el contenido del spinner segun los datos del producto
                     cantidadSpinner.setModel(new SpinnerNumberModel(1, 1, p.getExistencias(), 1));
 
                 }
@@ -216,6 +228,7 @@ public class VPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
 
+        // Actualizamos los datos de la tabla de productos
         this.buscarProductos();
 
     }//GEN-LAST:event_searchBtnActionPerformed
@@ -229,11 +242,18 @@ public class VPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_verPerfilBtnActionPerformed
 
     private void anhadirCestaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anhadirCestaBtnActionPerformed
+
+        // Obtenemos el valor actual del spinner
         this.cantidadProductoActual = (int) this.cantidadSpinner.getValue();
+
+        // Si la cantidad no es correcta salimos y no se realiza nada
         if (cantidadProductoActual <= 0) {
             return;
         }
+
+        // Llamamos a la funcion para introducir el producto en la cesta para su posterior compra
         this.fa.insertarProductoCesta(this.selectedProd, this.cantidadProductoActual, false);
+
     }//GEN-LAST:event_anhadirCestaBtnActionPerformed
 
     private void VerCestaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerCestaBtnActionPerformed

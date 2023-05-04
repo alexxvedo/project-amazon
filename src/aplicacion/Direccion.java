@@ -1,7 +1,10 @@
 package aplicacion;
 
+// Entidad direccion de la base de datos
+// Representa las posibles direccion de un cliente a donde se puede enviar un pedido
 public class Direccion {
 
+    // Atributos propios que representan las columnas de las tablas
     private int id;
     private Cliente cliente;
     private String calle;

@@ -24,35 +24,49 @@ public class VMetodosPago extends javax.swing.JDialog {
         this.customBehavior();
     }
 
+    // Funcion para gestionar el comportamiento y propiedades de los distintos elementos
     private void customBehavior() {
 
+        // Ocultamos el boton hasta que se cumplan las condiciones para que se pueda usar
         this.editBtn.setVisible(false);
 
+        // Indicamos el modo de seleccion de la tabla
         this.tablaMetodosPago.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
+        // Controlamos el evento de cuando se selecciona en la tabla
         this.tablaMetodosPago.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
             @Override
             public void valueChanged(ListSelectionEvent e) {
 
+                // Obtenemos si hay alguna fila seleccionada
                 isEditing = tablaMetodosPago.getSelectedRows().length != 0;
 
+                // Ajustamos la visibilidad de los botonos segun se tenga seleccionada alguna fila o no
                 saveBtn.setVisible(!isEditing);
                 editBtn.setVisible(isEditing);
                 removeBtn.setVisible(isEditing);
 
+                // Si hay alguna fila seleccionada
                 if (isEditing) {
 
+                    // Obtenemos la fila
                     int row = tablaMetodosPago.getSelectedRow();
+
+                    // Obtenemos el contenido de la fila, en este caso la direccion
                     MetodoPago m = ((ModeloTablaMetodosPago) tablaMetodosPago.getModel()).obtenerMetodoPago(row);
+
+                    // Guardamos el metodo de pago seleccionado, por si se cambia
                     oldM = m;
 
+                    // Ajustamos el contenido de los campos de texto
                     numTarText.setText("" + m.getNumeroTarjeta());
                     preferidaBtn.setSelected(m.isPreferida());
                     activaBtn.setSelected(m.isActiva());
 
                 } else {
 
+                    // Ajustamos el contenido de los campos de texto
                     numTarText.setText("");
                     preferidaBtn.setSelected(true);
 
@@ -64,17 +78,14 @@ public class VMetodosPago extends javax.swing.JDialog {
 
     }
 
+    // Funcion para cargar los datos en la tabla de direcciones
     private void obtenerMetodosPago() {
 
+        // Creamos el modelo
         ModeloTablaMetodosPago m = (ModeloTablaMetodosPago) this.tablaMetodosPago.getModel();
 
+        // Insertamos los datos en la tabla
         m.setFilas(fa.obtenerMetodosPago(this.cliente));
-
-        if (m.getRowCount() > 0) {
-
-            this.tablaMetodosPago.setRowSelectionInterval(0, 0);
-
-        }
 
     }
 
@@ -121,11 +132,6 @@ public class VMetodosPago extends javax.swing.JDialog {
         numTarLabel.setText("Num. tar.");
 
         preferidaBtn.setText("Preferida");
-        preferidaBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                preferidaBtnActionPerformed(evt);
-            }
-        });
 
         saveBtn.setText("Guardar");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -135,11 +141,6 @@ public class VMetodosPago extends javax.swing.JDialog {
         });
 
         activaBtn.setText("Activa");
-        activaBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                activaBtnActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -195,9 +196,13 @@ public class VMetodosPago extends javax.swing.JDialog {
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
 
+        // Creamos una nueva instancia del metodo de pago, con los datos actualizados
         MetodoPago m = new MetodoPago(Long.parseLong(numTarText.getText()), cliente, activaBtn.isSelected(), preferidaBtn.isSelected());
+
+        // Llamamos a la funcion para actualizar el metodo de pago de la base de datos
         int res = this.fa.actualizarMetodoPago(oldM, m);
 
+        // Si la accion se realizo correctamente, mostramos un mensaje de exito
         if (res == 1) {
 
             this.fa.muestraExcepcion("Metodo actualizado correctamente", Color.GREEN);
@@ -209,12 +214,16 @@ public class VMetodosPago extends javax.swing.JDialog {
 
     private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
 
+        // Mostramos un mensaje solicitando confirmacion para realizar la accion
         int confirmacion = JOptionPane.showConfirmDialog(this, "¿Seguro que quiere eliminar este metodo de pago?", "Confirmacion", JOptionPane.YES_NO_OPTION);
 
+        // Si nos indica que si, borramos el metodo de pago de la base de datos
         if (confirmacion == JOptionPane.YES_OPTION) {
 
+            // LLamamos a la funcion para eliminar el metodo de pago
             int res = this.fa.eliminarMetodoPago(oldM);
 
+            // Si la accion se realizo correctamente, mostramos un mensaje de exito
             if (res == 1) {
 
                 this.fa.muestraExcepcion("Metodo eliminado correctamente", Color.GREEN);
@@ -228,9 +237,13 @@ public class VMetodosPago extends javax.swing.JDialog {
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
 
+        // Creamos una nueva instancia para el nuevo metodo de pago
         MetodoPago m = new MetodoPago(Long.parseLong(numTarText.getText()), cliente, true, preferidaBtn.isSelected());
+
+        // Llamamos a la funcion para crear el nuevo metodo de pago
         int res = this.fa.crearMetodoPago(m);
 
+        // Si la accion se realizo correctamente, mostramos un mensaje de exito
         if (res == 1) {
 
             this.fa.muestraExcepcion("Metodo creado correctamente", Color.GREEN);
@@ -239,14 +252,6 @@ public class VMetodosPago extends javax.swing.JDialog {
         }
 
     }//GEN-LAST:event_saveBtnActionPerformed
-
-    private void preferidaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_preferidaBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_preferidaBtnActionPerformed
-
-    private void activaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activaBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_activaBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton activaBtn;

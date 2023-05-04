@@ -3,10 +3,7 @@ package gui;
 import aplicacion.EmpresaVendedora;
 import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * @author alumnogreibd
- */
+// Codigo de la tabla personalizada para empresas vendedoras
 public class ModeloTablaEmpresas extends AbstractTableModel {
 
     private java.util.List<EmpresaVendedora> empresas;

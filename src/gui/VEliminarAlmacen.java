@@ -1,94 +1,100 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package gui;
 
 import aplicacion.Almacen;
-import aplicacion.FachadaAplicacion;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-/**
- *
- * @author alumnogreibd
- */
 public class VEliminarAlmacen extends javax.swing.JDialog {
 
     aplicacion.FachadaAplicacion fa;
     boolean isAlmacen1Editing = false, isAlmacen2Editing = false;
     Almacen almacenEliminar, almacenDestino;
-    
+
     public VEliminarAlmacen(java.awt.Frame parent, boolean modal, aplicacion.FachadaAplicacion fa) {
+
         super(parent, modal);
         this.fa = fa;
         initComponents();
         anhadirAlmacenes();
         customBehavior();
-        
+
     }
-    
+
+    // Funcion para gestionar el comportamiento y propiedades de los distintos elementos
     private void customBehavior() {
 
+        // Ocultamos el boton hasta que se cumplan las condiciones para que se pueda usar
         this.eliminarBtn.setVisible(false);
 
+        // Indicamos el modo de seleccion de la tabla de direcciones
         this.tablaAlmacen1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        
         this.tablaAlmacen2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
+        // Controlamos el evento de cuando se selecciona en la tabla
         this.tablaAlmacen1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
             @Override
             public void valueChanged(ListSelectionEvent e) {
 
+                // Obtenemos si hay alguna fila seleccionada
                 isAlmacen1Editing = tablaAlmacen1.getSelectedRows().length != 0;
 
+                // Si tenemos alguna fila seleccionada
                 if (isAlmacen1Editing) {
 
+                    // Obtenemos la fila
                     int row = tablaAlmacen1.getSelectedRow();
+
+                    // Recuperamos el valor de la fila
                     almacenEliminar = ((ModeloTablaAlmacen) tablaAlmacen1.getModel()).obtenerAlmacen(row);
 
                 }
-                
-                if(almacenEliminar != null && almacenDestino != null){
+
+                // Ajustamos la visibilidad de los botonos cuando se tengan 2 almacenes seleccionados
+                if (almacenEliminar != null && almacenDestino != null) {
+
                     eliminarBtn.setVisible(true);
+
                 }
 
             }
 
         });
-        
+
+        // Controlamos el evento de cuando se selecciona en la tabla
         this.tablaAlmacen2.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
             @Override
             public void valueChanged(ListSelectionEvent e) {
 
+                // Obtenemos si hay alguna fila seleccionada
                 isAlmacen2Editing = tablaAlmacen2.getSelectedRows().length != 0;
 
+                // Si tenemos alguna fila seleccionada
                 if (isAlmacen2Editing) {
 
+                    // Obtenemos la fila
                     int row = tablaAlmacen2.getSelectedRow();
+
+                    // Recuperamos el valor de la fila
                     almacenDestino = ((ModeloTablaAlmacen) tablaAlmacen2.getModel()).obtenerAlmacen(row);
 
                 }
-                
-                if(almacenEliminar != null && almacenDestino != null){
+
+                // Ajustamos la visibilidad de los botonos cuando se tengan 2 almacenes seleccionados
+                if (almacenEliminar != null && almacenDestino != null) {
                     eliminarBtn.setVisible(true);
                 }
 
             }
 
         });
-        
-        
 
     }
 
-    
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -179,42 +185,47 @@ public class VEliminarAlmacen extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
     private void eliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarBtnActionPerformed
-        if(almacenEliminar.getId() != almacenDestino.getId()){
+
+        // Comprobamos que tenemos seleccionados 2 almacenes distintos
+        if (almacenEliminar.getId() != almacenDestino.getId()) {
+
+            // Llamamos a la funcion para eliminar el almacen indicando moviendo los productos a otro almacen disponible
             int res = fa.eliminarAlmacen(almacenEliminar, almacenDestino);
-            if(res == 1){
+
+            // Si la accion se realizo correctamente, mostramos un mensaje
+            if (res == 1) {
+
                 fa.muestraExcepcion("Almacen eliminado", Color.green);
+
             }
+
+            // Recargamos los datos de las tablas
             anhadirAlmacenes();
-        }else {
-            fa.muestraExcepcion("Los almacenes son los mismos", Color.red);
+
         }
+
     }//GEN-LAST:event_eliminarBtnActionPerformed
 
     private void salirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirBtnActionPerformed
         this.dispose();
     }//GEN-LAST:event_salirBtnActionPerformed
 
+    // Funcion para cargar las filas de las tablas de almacenes
     private void anhadirAlmacenes() {
 
+        // Creamos los modelos
         ModeloTablaAlmacen m1 = (ModeloTablaAlmacen) this.tablaAlmacen1.getModel();
         ModeloTablaAlmacen m2 = (ModeloTablaAlmacen) this.tablaAlmacen2.getModel();
 
+        // Obtenemos los almacenes almacenados en la base de datos
         ArrayList<Almacen> almacenes = this.fa.obtenerAlmacenes();
-        
+
+        // Insertamos los datos en las tablas
         m1.setFilas(almacenes);
         m2.setFilas(almacenes);
 
-        if (m1.getRowCount() > 0) {
-            
-            this.tablaAlmacen1.setRowSelectionInterval(0, 0);
-            this.tablaAlmacen2.setRowSelectionInterval(0, 0);
-
-        }
-
     }
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton eliminarBtn;

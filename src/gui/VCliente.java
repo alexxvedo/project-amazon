@@ -9,33 +9,34 @@ import javax.swing.JOptionPane;
 
 public class VCliente extends javax.swing.JDialog {
 
+    // Variables que empleamos en la ventana
     private Cliente cliente;
     private boolean activeEdit = true;
     private aplicacion.FachadaAplicacion fa;
 
     public VCliente(java.awt.Frame parent, boolean modal, aplicacion.FachadaAplicacion fa, Cliente cliente) {
+
         super(parent, modal);
         this.cliente = cliente;
         this.fa = fa;
         initComponents();
         changeEditStatus();
         obtenerPedidos();
+
     }
 
+    // Funcion para cargar los datos en la tabla de pedidos
     private void obtenerPedidos() {
 
+        // Creamos el modelo
         ModeloTablaPedidos m = (ModeloTablaPedidos) this.tablaPedidos.getModel();
 
+        // Insertamos los datos
         m.setFilas(fa.obtenerPedidos(cliente));
-
-        if (m.getRowCount() > 0) {
-
-            this.tablaPedidos.setRowSelectionInterval(0, 0);
-
-        }
 
     }
 
+    // Funcion para cambiar el estado de los distintos botones
     private void changeEditStatus() {
 
         this.getPrimeBtn.setVisible(!this.cliente.isPrime());
@@ -299,11 +300,13 @@ public class VCliente extends javax.swing.JDialog {
 
         try {
 
+            // Obtenemos los datos de los distintos inputs
             int telefono = Integer.parseInt(this.telefonoText.getText());
             SimpleDateFormat formatter = new SimpleDateFormat(Cliente.format);
             Date fechaNacimiento = formatter.parse(this.fecNacimientoText.getText());
             String password = this.cliente.getContrasena();
 
+            // Si introduce una nueva password, hasheamos el contenido
             if (this.passwordText.getPassword().length != 0) {
 
                 MessageDigest md = MessageDigest.getInstance("MD5");
@@ -319,10 +322,13 @@ public class VCliente extends javax.swing.JDialog {
 
             }
 
+            // Creamos una nueva instancia del cliente actual, con los datos nuevos
             Cliente cliente = new Cliente(this.cliente.getId(), this.nameText.getText(), telefono, fechaNacimiento, this.cliente.isPrime(), this.emailText.getText(), password);
 
+            // LLamamos a la funcion para actualizar el cliente en la base de datos
             int res = this.fa.actualizarCliente(cliente);
 
+            // Si se realizo correctamente, mostramos un mensaje
             if (res == 1) {
 
                 this.fa.muestraExcepcion("Cliente actualizado correctamente", Color.GREEN);
@@ -331,6 +337,7 @@ public class VCliente extends javax.swing.JDialog {
 
             }
 
+            // Comprobamos si se produjo algun tipo de excepcion
         } catch (Exception e) {
 
             this.fa.muestraExcepcion(e.getMessage(), Color.RED);
@@ -345,12 +352,16 @@ public class VCliente extends javax.swing.JDialog {
 
     private void eliminarClienteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarClienteBtnActionPerformed
 
+        // Mostramos un mensaje solicitando confirmacion de la accion
         int confirmacion = JOptionPane.showConfirmDialog(this, "¿Seguro que quiere eliminar su perfil?", "Confirmacion", JOptionPane.YES_NO_OPTION);
 
+        // Si responde si eliminamos el perfil
         if (confirmacion == JOptionPane.YES_OPTION) {
 
+            // Llamamos a la funcion para eliminar el cliente
             int res = this.fa.eliminarCliente(cliente);
 
+            // Si se realizo correctamente, mostramos un mensaje y cerramos la aplicacion
             if (res == 1) {
 
                 this.fa.muestraExcepcion("Cliente eliminado correctamente", Color.GREEN);

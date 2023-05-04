@@ -1,9 +1,12 @@
 package aplicacion;
 
+// Entidad empresa vendedora de la base de datos
+// Representa las empresas que venden sus productos a traves de amazon
 import java.util.Date;
 
 public class EmpresaVendedora {
 
+    // Atributos propios que representan las columnas de las tablas
     private int id;
     private String nombre;
     private Date fechaAsociacion;

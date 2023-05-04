@@ -3,8 +3,11 @@ package aplicacion;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+// Entidad cliente de la base de datos
+// Representa a las personas usuarias/compradoras de la compania
 public class Cliente {
 
+    // Atributos propios que representan las columnas de las tablas
     private int id;
     private String nombre;
     private int telefono;

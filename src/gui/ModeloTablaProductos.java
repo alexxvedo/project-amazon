@@ -5,6 +5,7 @@ import aplicacion.EmpresaVendedora;
 import aplicacion.Producto;
 import javax.swing.table.*;
 
+// Codigo de la tabla personalizada para productos
 public class ModeloTablaProductos extends AbstractTableModel {
 
     private java.util.List<Producto> productos;

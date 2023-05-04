@@ -16,6 +16,7 @@ import javax.swing.event.ListSelectionListener;
 
 public class VCesta extends javax.swing.JDialog {
 
+    // Variables que empleamos en la ventana
     private Cliente cliente;
     private aplicacion.FachadaAplicacion fa;
     private boolean isProductEditing;
@@ -45,10 +46,13 @@ public class VCesta extends javax.swing.JDialog {
 
     }
 
+    // Funcion que nos permite calcular el coste total de la cesta
     private void getTotal() {
 
+        // Seteamos el valor a 0
         this.totalPagar = 0;
 
+        // Por cada producto que tengamos el la cesta, calculamos su coste
         for (Map.Entry<Producto, Integer> set : this.fa.obtenerCesta().entrySet()) {
 
             Producto key = set.getKey();
@@ -57,101 +61,112 @@ public class VCesta extends javax.swing.JDialog {
 
         }
 
+        // En caso de no tener el prime le sumamos el coste del envio
         if (!cliente.isPrime()) {
             totalPagar += distribuidorActual.getCosteEnvio();
         }
 
+        // Indicamos el total en la label correspondiente
         this.totalPagarLabel.setText("" + this.totalPagar);
 
     }
 
+    // Funcion que nos devuelve un distribuidor aleatorio de entre todos los disponibles
     private void setDistribuidor() {
         ArrayList<Distribuidor> distribuidores = fa.obtenerDistribuidores();
-
         Random random = new Random();
         int randomNumber = random.nextInt(distribuidores.size());
         distribuidorActual = distribuidores.get(randomNumber);
     }
 
+    // Funcion para cargar los datos en la tabla de productos
     private void anhadirProductos() {
 
+        // Creamos el modelo
         ModeloTablaProductosCesta m = (ModeloTablaProductosCesta) this.tablaProductosCesta.getModel();
 
+        // Insertamos los datos
         m.setFilas(this.fa.obtenerCesta());
 
-        if (m.getRowCount() > 0) {
-
-            this.tablaProductosCesta.setRowSelectionInterval(0, 0);
-
-        }
-
     }
 
+    // Funcion para cargar los datos en la tabla de metodos de pago
     private void anhadirMetodosPago() {
 
+        // Creamos el modelo
         ModeloTablaMetodosPago m = (ModeloTablaMetodosPago) this.tablaMetodosPagoCesta.getModel();
 
+        // Insertamos los datos
         m.setFilas(fa.obtenerMetodosPago(this.cliente));
 
-        if (m.getRowCount() > 0) {
-            this.tablaMetodosPagoCesta.setRowSelectionInterval(0, 0);
-        }
-
     }
 
+    // Funcion para cargar los datos en la tabla de direcciones de envio
     private void anhadirDirecciones() {
 
+        // Creamos el modelo
         ModeloTablaDirecciones m = (ModeloTablaDirecciones) this.tablaDireccionesCesta.getModel();
 
+        // Insertamos los datos
         m.setFilas(fa.obtenerDirecciones(this.cliente));
-
-        if (m.getRowCount() > 0) {
-            this.tablaDireccionesCesta.setRowSelectionInterval(0, 0);
-        }
-
-        this.totalPagarLabel.setText("" + this.totalPagar);
 
     }
 
+    // Funcion para gestionar el comportamiento y propiedades de los distintos elementos
     private void customBehavior() {
 
+        // Indicamos el modo de seleccion
         this.tablaProductosCesta.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         this.tablaDireccionesCesta.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         this.tablaMetodosPagoCesta.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
+        // Ocultamos los botonos hasta que cumplan la condicion para poder usarse
         this.eliminarBtn.setVisible(false);
         this.cantidadSpinner.setVisible(false);
 
+        // Controlamos el evento de cuando se cambia el valor del spinner
         cantidadSpinner.addChangeListener(new ChangeListener() {
 
             @Override
             public void stateChanged(ChangeEvent e) {
 
+                // Actualizamos la cesta, contenida en el gestor
                 fa.insertarProductoCesta(selectedProd, (int) cantidadSpinner.getValue(), true);
+
+                // Recargamos la tabla
                 anhadirProductos();
+
+                // Recalculamos el total
                 getTotal();
 
             }
 
         });
 
+        // Controlamos el evento de cuando se selecciona en la tabla
         this.tablaProductosCesta.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
             @Override
             public void valueChanged(ListSelectionEvent e) {
 
+                // Obtenemos si hay alguna fila seleccionada
                 isProductEditing = tablaProductosCesta.getSelectedRows().length != 0;
 
+                // Mostramos los botonos si se cumplen las condiciones
                 eliminarBtn.setVisible(isProductEditing);
                 cantidadSpinner.setVisible(isProductEditing);
 
+                // Si hay alguna fila seleccionada
                 if (isProductEditing) {
 
+                    // Obtenemos la fila indicada y la guardamos en el producto
                     int row = tablaProductosCesta.getSelectedRow();
                     selectedProd = ((ModeloTablaProductosCesta) tablaProductosCesta.getModel()).obtenerProducto(row);
 
+                    // Obtenemos la cesta actual
                     HashMap<Producto, Integer> productos = fa.obtenerCesta();
 
+                    // Indicamos el valor actual, minimo y maximo del spinner en base al estado de la cesta
                     cantidadSpinner.setModel(new SpinnerNumberModel((int) productos.get(selectedProd), 1, selectedProd.getExistencias(), 1));
 
                 }
@@ -160,15 +175,19 @@ public class VCesta extends javax.swing.JDialog {
 
         });
 
+        // Controlamos el evento de cuando se selecciona en la tabla
         this.tablaMetodosPagoCesta.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
             @Override
             public void valueChanged(ListSelectionEvent e) {
 
+                // Obtenemos si hay alguna fila seleccionada
                 isMetodoPagoEditing = tablaMetodosPagoCesta.getSelectedRows().length != 0;
 
+                // Si hay alguna fila seleccionada
                 if (isMetodoPagoEditing) {
 
+                    // Obtenemos la fila y guardamos el metodo de pago seleccionado
                     int row = tablaMetodosPagoCesta.getSelectedRow();
                     selectedMetodoPago = ((ModeloTablaMetodosPago) tablaMetodosPagoCesta.getModel()).obtenerMetodoPago(row);
 
@@ -178,15 +197,19 @@ public class VCesta extends javax.swing.JDialog {
 
         });
 
+        // Controlamos el evento de cuando se selecciona en la tabla
         this.tablaDireccionesCesta.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
             @Override
             public void valueChanged(ListSelectionEvent e) {
 
+                // Obtenemos si hay alguna fila seleccionada
                 isDireccionEditing = tablaDireccionesCesta.getSelectedRows().length != 0;
 
+                // Si hay alguna fila seleccionada
                 if (isDireccionEditing) {
 
+                    // Obtenemos la fila y guardamos la direccion seleccionada
                     int row = tablaDireccionesCesta.getSelectedRow();
                     selectedDir = ((ModeloTablaDirecciones) tablaDireccionesCesta.getModel()).obtenerDireccion(row);
 
@@ -320,20 +343,31 @@ public class VCesta extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void eliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarBtnActionPerformed
+
+        // Eliminamos el producto de la cesta, situada en el gestor
         this.fa.eliminarProductoCesta(selectedProd);
+
+        // Actualizamos el contenido de la tabla
         this.anhadirProductos();
+
+        // Recalculamos el total
         this.getTotal();
+
     }//GEN-LAST:event_eliminarBtnActionPerformed
     private void pagarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagarBtnActionPerformed
 
+        // Obtenemos el estado de la cesta actual
         HashMap<Producto, Integer> productos = fa.obtenerCesta();
 
+        // Comprobamos que se cumplen todas las condiciones para poder realizar un pedido
         if (productos.isEmpty() || this.selectedDir == null || this.selectedMetodoPago == null) {
             return;
         }
 
+        // Creamos el pedido a traves de la fachada
         int res = fa.crearPedido(this.cliente, this.selectedMetodoPago, this.selectedDir, distribuidorActual, productos, false);
 
+        // Si el pedido se creo correctamente, mostramos un mensaje
         if (res == 1) {
 
             this.fa.muestraExcepcion("Pedido realizado correctamente", Color.GREEN);

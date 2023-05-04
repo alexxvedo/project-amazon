@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.table.*;
 
+// Codigo de la tabla personalizada para la cesta de productos
 public class ModeloTablaProductosCesta extends AbstractTableModel {
 
     private java.util.List<Producto> productos;

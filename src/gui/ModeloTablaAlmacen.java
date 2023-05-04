@@ -3,6 +3,7 @@ package gui;
 import aplicacion.Almacen;
 import javax.swing.table.AbstractTableModel;
 
+// Codigo de la tabla personalizada para almacenes
 public class ModeloTablaAlmacen extends AbstractTableModel {
 
     private java.util.List<Almacen> almacenes;

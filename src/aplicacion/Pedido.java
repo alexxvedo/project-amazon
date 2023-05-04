@@ -2,8 +2,11 @@ package aplicacion;
 
 import java.util.Date;
 
+// Entidad pedido de la base de datos
+// Representa los pedidos que realizo un cliente a traves de la aplicacion
 public class Pedido {
 
+    // Atributos propios que representan las columnas de las tablas
     private int id;
     private Date fechaPedido;
     private Date fechaSalida;

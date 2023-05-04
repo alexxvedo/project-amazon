@@ -1,7 +1,10 @@
 package aplicacion;
 
+// Entidad distribuidor de la base de datos
+// Representa los distribuidores que pueden enviar un pedido
 public class Distribuidor {
 
+    // Atributos propios que representan las columnas de las tablas
     private int id;
     private String nombre;
     private int telefono;

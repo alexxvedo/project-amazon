@@ -1,7 +1,10 @@
 package aplicacion;
 
+// Entidad metodos de pago de la base de datos
+// Representa los metodos de pago de un cliente, que tiene disponibles en la aplicacion
 public class MetodoPago {
 
+    // Atributos propios que representan las columnas de las tablas
     private long numeroTarjeta;
     private Cliente cliente;
     private boolean activa;
