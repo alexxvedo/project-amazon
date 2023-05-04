@@ -75,26 +75,6 @@ insert into clientes values
 	(default, 'Javier Gonzalez Perez', 691669068, '12-19-2003', false, 'jgp@gmail.com', 'ddc8f2b30c42909a8d151357a70bcc4b'), --jgp
 	(default, 'Test', 111111111, '01-01-2000', false, 'test', '098f6bcd4621d373cade4e832627b4f6');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 insert into metodosPago values
 	(4000123456789010, 1, true, true),
 	(1234567894325512, 2, false, true),
