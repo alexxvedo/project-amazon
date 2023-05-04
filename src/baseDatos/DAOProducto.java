@@ -34,6 +34,10 @@ public class DAOProducto extends AbstractDAO {
 
         try {
 
+            // Indicamos el nivel de aislamiento, desactivamos el autocommit
+            con.setAutoCommit(false);
+            con.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
+
             // Indicamos cual es la consulta que queremos lanzar
             // Pasando los parametros que queremos que emplee
             stmProductos = con.prepareStatement("select * from productos where nombre like ? and existencias != 0");
@@ -88,6 +92,13 @@ public class DAOProducto extends AbstractDAO {
                 productos.add(producto);
 
             }
+
+            // Comprometemos los cambios
+            con.commit();
+
+            // Devolvemos los valores por defecto a la conexion
+            con.setAutoCommit(true);
+            con.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
 
             // Gestionamos las posibles excepciones
         } catch (Exception e) {
